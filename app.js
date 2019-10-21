@@ -14,7 +14,7 @@ const flash      = require("connect-flash");
  
 //redux-change
 const cors = require('cors');
-
+//hallo
 mongoose
   .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
