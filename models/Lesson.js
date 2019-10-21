@@ -1,0 +1,45 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+//create an object to create, read, update and delete asset data in the MongoDB
+
+let Lesson = new Schema({
+    //we do not need to define the _id to identify the asset, mongoose does this automatically
+    lesson_ID: {
+        type: String
+    },
+    lesson_name: {
+        type: String
+    },
+    asset_value: {
+        type: String
+    },
+    lesson_duration: {
+        type: Number
+    },
+    lesson_location: {
+        type: String
+    },
+    lesson_price: {
+        type: Number
+    },
+    lesson_equip: {
+        type: String
+    },
+    lesson_language: {
+        type: String
+    },
+    lesson_amountPeople: {
+        type: String
+    },
+    lesson_eMailTeacher: {
+        type: String
+    },
+    lesson_aboutTeacher: {
+        type: String
+    }
+
+
+});
+
+module.exports = mongoose.model('Lesson', Lesson);
