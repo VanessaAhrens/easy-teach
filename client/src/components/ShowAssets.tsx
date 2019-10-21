@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import SimpleAsset from './SimpleAsset'
+import SimpleLesson from './SimpleLesson'
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
-import {IAssetData,IState} from '../state/appState'
+import {ILessonData,IState} from '../state/appState'
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 
@@ -12,54 +12,54 @@ declare let window: IWindow;
 
 interface IProps{};
 interface IJSXState { };
-export interface IAssetAction extends IAction {
-  asset: IAssetData
+export interface ILessonAction extends IAction {
+  lesson: ILessonData
 }
-reducerFunctions[ActionType.create_asset] = function (newState: IState, action: IAssetAction) {
-  newState.BM.assets.push(action.asset);
+reducerFunctions[ActionType.create_lesson] = function (newState: IState, action: ILessonAction) {
+  newState.BM.lessons.push(action.lesson);
   newState.UI.waitingForResponse=false;
   return newState;
 }
 
-export default class ShowAssets extends Component<IProps, IJSXState> {
+export default class ShowLessons extends Component<IProps, IJSXState> {
     constructor(props: any) {
         console.log("new App component will be initialized");
         super(props);
-        this.handleCreateAsset = this.handleCreateAsset.bind(this);
+        this.handleCreateLesson = this.handleCreateLesson.bind(this);
       }
     render() {
         return (
             <div>
           <p> {window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}</p>
-          <h1>simple asset management application</h1>
-          <p>to create a new asset click this button:&nbsp;
-            <button onClick={this.handleCreateAsset}>create asset</button>
+          <h1>simple lesson management application</h1>
+          <p>to create a new lesson click this button:&nbsp;
+            <button onClick={this.handleCreateLesson}>create lesson</button>
           </p>
           <table>
             <tbody>
               <tr><th>description</th><th>value</th><th>action</th></tr>
-              {window.CS.getBMState().assets.map(asset => <SimpleAsset key={asset._id} asset={asset} edit={false} />)}
+              {window.CS.getBMState().lessons.map(lesson => <SimpleLesson key={lesson._id} lesson={lesson} edit={false} />)}
             </tbody>
           </table>
         </div>
         )
     }
-    handleCreateAsset() {
-        console.log("handleCreateAsset invoked");
+    handleCreateLesson() {
+        console.log("handleCreateLesson invoked");
         const uiAction: IAction = {
           type: ActionType.server_called
         }
         window.CS.clientAction(uiAction);
-        const newAsset: IAssetData = {
+        const newLesson: ILessonData = {
           _id: mongoose.Types.ObjectId().toString(),
-          asset_name: "",
-          asset_value: 0
+          lesson_name: "",
+          lesson_value: 0
         }
-        const action: IAssetAction = {
-          type: ActionType.create_asset,
-          asset: newAsset
+        const action: ILessonAction = {
+          type: ActionType.create_lesson,
+          lesson: newLesson
         }
-        axios.post('/assets/add', newAsset)
+        axios.post('/lessons/add', newLesson)
         .then(res => {
           window.CS.clientAction(action);
           console.log(res.data)

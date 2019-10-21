@@ -17,15 +17,15 @@ interface IProps {
 }
 
 export interface IAssetsLoadedAction extends IAction {
-  assets: IAssetData[]
+  lessons: IAssetData[]
 }
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
   newState.UI.waitingForResponse = true;
   return newState;
 }
-reducerFunctions[ActionType.add_assets_from_server] = function (newState: IState, action: IAssetsLoadedAction) {
+reducerFunctions[ActionType.add_lessons_from_server] = function (newState: IState, action: IAssetsLoadedAction) {
   newState.UI.waitingForResponse = false;
-  newState.BM.assets = action.assets;
+  newState.BM.lessons = action.lessons;
   return newState;
 }
 export default class App extends React.PureComponent<IProps> {
@@ -35,12 +35,12 @@ export default class App extends React.PureComponent<IProps> {
       type: ActionType.server_called
     }
     window.CS.clientAction(uiAction);
-    axios.get('/assets/read').then(response => {
+    axios.get('/lessons/read').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
       console.log(response.data);
       const responseAction: IAssetsLoadedAction = {
-        type: ActionType.add_assets_from_server,
-        assets: response.data as IAssetData[]
+        type: ActionType.add_lessons_from_server,
+        lessons: response.data as IAssetData[]
       }
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
@@ -52,7 +52,7 @@ export default class App extends React.PureComponent<IProps> {
       <>
         <NavBar />
         <Switch>
-          <Route path="/showassets" component={ShowAssets} />
+          <Route path="/showlessons" component={ShowAssets} />
           <Route path="/register" component={Register} />
           <Route path="/" component={Login} />
         </Switch>

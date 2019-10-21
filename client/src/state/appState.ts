@@ -23,15 +23,15 @@ export interface IUI {
     Login: ILogin;
 }
 
-export interface IAssetData {
+export interface ILessonData {
     _id: string;
-    asset_name: string;
-    asset_value: number;
+    lesson_name: string;
+    lesson_value: number;
   }
 
 export interface IBM{
     user:IUser;
-    assets:IAssetData[]
+    lessons:ILessonData[]
 }
 
 
@@ -55,6 +55,6 @@ export const initial:IState = {
             username:"",
             password:""
         },
-        assets:[]
+        lessons:[]
 	}
 };

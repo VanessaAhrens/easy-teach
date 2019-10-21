@@ -1,58 +1,58 @@
 const express = require('express');
-const assetRoutes = express.Router();
+const lessonRoutes = express.Router();
 
 
-let Asset = require('../models/asset');
+let lesson = require('../models/Lesson');
 
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
-//R: read all assets
+//R: read all lessons
 
-assetRoutes.route('/read').get(function (req, res) {
+lessonRoutes.route('/read').get(function (req, res) {
     console.log("got a request");
-    Asset.find(function (err, assets) {
+    Lesson.find(function (err, lessons) {
         if (err) {
             console.log(err);
         } else {
-            res.json(assets);
+            res.json(lessons);
         }
     });
 });
 
-//C: create a new asset
+//C: create a new Lesson
 
-assetRoutes.route('/add').post(function (req, res) {
-    console.log("Request to save this asset:" + JSON.stringify(req.body));
-    let asset = new Asset(req.body);
-    asset.save()
-        .then(asset => {
-            res.status(200).json({ 'asset': 'asset added successfully' });
+lessonRoutes.route('/add').post(function (req, res) {
+    console.log("Request to save this Lesson:" + JSON.stringify(req.body));
+    let lesson = new Lesson(req.body);
+    lesson.save()
+        .then(lesson => {
+            res.status(200).json({ 'lesson': 'lesson added successfully' });
         })
         .catch(err => {
-            res.status(400).send('adding new asset failed');
+            res.status(400).send('adding new lesson failed');
         });
 });
 
-//R: read one asset defined be the id of the asset
+//R: read one lesson defined be the id of the lesson
 
-assetRoutes.route('/:id').get(function (req, res) {
+lessonRoutes.route('/:id').get(function (req, res) {
     let id = req.params.id;
-    Asset.findById(id, function (err, asset) {
-        res.json(asset);
+    Lesson.findById(id, function (err, lesson) {
+        res.json(lesson);
     });
 });
 
-//U: update the asset with the given id
+//U: update the lesson with the given id
 // post -> put
-assetRoutes.route('/update/:id').put(function (req, res) {
-    Asset.findById(req.params.id, function (err, asset) {
-        if (!asset) res.status(404).send("Asset to update not found, asset _id:" + req.params.id);
+lessonRoutes.route('/update/:id').put(function (req, res) {
+    Lesson.findById(req.params.id, function (err, lesson) {
+        if (!lesson) res.status(404).send("Lesson to update not found, lesson _id:" + req.params.id);
         else {
-            asset.asset_id = req.body.asset_id;
-            asset.asset_name = req.body.asset_name;
-            asset.asset_value = req.body.asset_value;
+            lesson.lesson_id = req.body.lesson_id;
+            lesson.lesson_name = req.body.lesson_name;
+            lesson.lesson_value = req.body.lesson_value;
 
-            asset.save().then(asset => {
-                res.json('asset updated!');
+            lesson.save().then(lesson => {
+                res.json('lesson updated!');
             })
                 .catch(err => {
                     res.status(400).send("Update not possible");
@@ -61,15 +61,15 @@ assetRoutes.route('/update/:id').put(function (req, res) {
     });
 });
 
-//D: delete the asset with the given id
+//D: delete the lesson with the given id
 // get -> post
-assetRoutes.route('/delete/:id').post(function (req, res) {
-    Asset.findByIdAndDelete(req.params.id, function (err, asset) {
-        if (!asset)
+lessonRoutes.route('/delete/:id').post(function (req, res) {
+    Lesson.findByIdAndDelete(req.params.id, function (err, lesson) {
+        if (!lesson)
             res.status(404).send("data is not found");
         else
-            res.json('asset deleted!');
+            res.json('lesson deleted!');
     });
 });
 
-module.exports = assetRoutes;
+module.exports = lessonRoutes;

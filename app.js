@@ -81,7 +81,7 @@ require('./passport')(app);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes); 
-app.use('/assets', require('./routes/asset'));
+app.use('/lessons', require('./routes/lesson'));
 
 //redux-change
 app.get('/*', (req, res) => {
