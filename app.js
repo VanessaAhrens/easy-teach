@@ -85,6 +85,7 @@ app.use('/lessons', require('./routes/lesson'));
 
 //redux-change
 app.get((req, res) => {
+  //this serves files to client
   res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 
