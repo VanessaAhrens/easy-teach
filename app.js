@@ -84,7 +84,7 @@ app.use('/auth', authRoutes);
 app.use('/lessons', require('./routes/lesson'));
 
 //redux-change
-app.get('/*', (req, res) => {
+app.get((req, res) => {
   res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 
