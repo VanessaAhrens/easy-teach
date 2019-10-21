@@ -2,10 +2,10 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Register from './components/Register';
-import ShowAssets from './components/ShowAssets';
+import ShowLessons from './components/ShowLesson';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
-import { IAssetData, IState } from './state/appState'
+import { ILessonData, IState } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 
@@ -16,14 +16,14 @@ interface IProps {
   stateCounter: number
 }
 
-export interface IAssetsLoadedAction extends IAction {
-  lessons: IAssetData[]
+export interface ILessonsLoadedAction extends IAction {
+  lessons: ILessonData[]
 }
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
   newState.UI.waitingForResponse = true;
   return newState;
 }
-reducerFunctions[ActionType.add_lessons_from_server] = function (newState: IState, action: IAssetsLoadedAction) {
+reducerFunctions[ActionType.add_lessons_from_server] = function (newState: IState, action: ILessonsLoadedAction) {
   newState.UI.waitingForResponse = false;
   newState.BM.lessons = action.lessons;
   return newState;
@@ -38,9 +38,9 @@ export default class App extends React.PureComponent<IProps> {
     axios.get('/lessons/read').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
       console.log(response.data);
-      const responseAction: IAssetsLoadedAction = {
+      const responseAction: ILessonsLoadedAction = {
         type: ActionType.add_lessons_from_server,
-        lessons: response.data as IAssetData[]
+        lessons: response.data as ILessonData[]
       }
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
@@ -52,7 +52,7 @@ export default class App extends React.PureComponent<IProps> {
       <>
         <NavBar />
         <Switch>
-          <Route path="/showlessons" component={ShowAssets} />
+          <Route path="/showlessons" component={ShowLessons} />
           <Route path="/register" component={Register} />
           <Route path="/" component={Login} />
         </Switch>

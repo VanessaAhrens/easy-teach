@@ -2,7 +2,7 @@ const express = require('express');
 const lessonRoutes = express.Router();
 
 
-let lesson = require('../models/Lesson');
+let Lesson = require('../models/Lesson');
 
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
 //R: read all lessons

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ILessonAction } from './ShowLessons';
+import { ILessonAction } from './ShowLesson';
 import { ActionType, IAction } from '../framework/IAction';
 import { ILessonData, IState } from '../state/appState'
 import axios from 'axios';
