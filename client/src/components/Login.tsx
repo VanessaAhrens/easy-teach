@@ -39,7 +39,7 @@ export default class Login extends Component {
         return (
             <div>
                 <p>You are logged in as {window.CS.getBMState().user.username}</p>
-                <button onClick={this.handleLogout}>Logout</button>
+                <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
             </div>
         )
     else
@@ -52,7 +52,7 @@ export default class Login extends Component {
                     <label htmlFor="password">Password:</label>
                     <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
                     <br />
-                    <input type="submit" value="Login" />
+                    <input className="btn btn-primary" type="submit" value="Login" />
                 </form>
                 <p>{window.CS.getUIState().Login.errorMessage}</p>
 

@@ -13,7 +13,7 @@ import { CS } from './framework/CS';
 import { IWindow } from './framework/IWindow'
 declare let window: IWindow;
 window.CS = new CS();
-//we create the inital Application State
+//we create the inital Application State macht store 
 window.CS.initializeStore();
 
 //now we can render this state to the DOM using React

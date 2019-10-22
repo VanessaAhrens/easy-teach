@@ -49,14 +49,14 @@ export default class App extends React.PureComponent<IProps> {
   render() {
     window.CS.log("App --> render()")
     return (
-      <>
+      <div className="container">
         <NavBar />
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/register" component={Register} />
           <Route path="/" component={Login} />
         </Switch>
-      </>
+      </div>
     );
   }
 
