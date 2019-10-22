@@ -53,7 +53,15 @@ export default class ShowLessons extends Component<IProps, IJSXState> {
         const newLesson: ILessonData = {
           _id: mongoose.Types.ObjectId().toString(),
           lesson_name: "",
-          lesson_value: 0
+          lesson_value: 0,
+          lesson_duration:0,
+          lesson_location: "",
+          lesson_price: 0,
+          lesson_equip: "",
+          lesson_language:"",
+          lesson_amountPeople: "",
+          lesson_eMailTeacher: "",
+          lesson_aboutTeacher: "",
         }
         const action: ILessonAction = {
           type: ActionType.create_lesson,
