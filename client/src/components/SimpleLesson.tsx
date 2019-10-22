@@ -28,8 +28,15 @@ reducerFunctions[ActionType.update_lesson] = function (newState: IState, updateA
     let lessonToChange: ILessonData[] = newState.BM.lessons.filter(lesson => lesson._id === updateAction.lesson._id)
     console.log(lessonToChange);
     lessonToChange[0].lesson_name = updateAction.lesson.lesson_name;
-    lessonToChange[0].lesson_value = updateAction.lesson.lesson_value;
-    return newState;
+    lessonToChange[0].lesson_duration = updateAction.lesson.lesson_duration;
+    lessonToChange[0].lesson_location = updateAction.lesson.lesson_location;
+    lessonToChange[0].lesson_price = updateAction.lesson.lesson_price;
+    lessonToChange[0].lesson_equip = updateAction.lesson.lesson_equip;
+    lessonToChange[0].lesson_language = updateAction.lesson.lesson_language;
+    lessonToChange[0].lesson_amountPeople = updateAction.lesson.lesson_amountPeople;
+    lessonToChange[0].lesson_eMailTeacher = updateAction.lesson.lesson_eMailTeacher;
+    lessonToChange[0].lesson_aboutTeacher = updateAction.lesson.lesson_aboutTeacher;
+    return lessonToChange;
 }
 reducerFunctions[ActionType.delete_lesson] = function (newState: IState, deleteAction: ILessonAction) {
     let lessonsToKeep: ILessonData[] = newState.BM.lessons.filter(lesson => lesson._id !== deleteAction.lesson._id)
@@ -45,7 +52,15 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
 
         this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleValueChange = this.handleValueChange.bind(this);
+        this.handleDurationChange = this.handleDurationChange.bind(this);
+        this.handleLocationChange = this.handleLocationChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
+        this.handleEquipChange = this.handleEquipChange.bind(this);
+        this.handleLanguageChange = this.handleLanguageChange.bind(this);
+        this.handleAmountPeopleChange = this.handleAmountPeopleChange.bind(this);
+        this.handleEmailTeacherChange = this.handleEmailTeacherChange.bind(this);
+        this.handleAboutTeacherChange = this.handleAboutTeacherChange.bind(this);
+
         this.handleSave = this.handleSave.bind(this);
         this.handleRerenderTest = this.handleRerenderTest.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -62,7 +77,15 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
             return (
                 <tr>
                     <td><input type="text" name="name" value={this.props.lesson.lesson_name} onChange={this.handleNameChange} /></td>
-                    <td><input type="number" name="value" value={this.props.lesson.lesson_value} onChange={this.handleValueChange} /> €</td>
+                    <td><input type="text" name="duration" value={this.props.lesson.lesson_duration} onChange={this.handleDurationChange} /></td>
+                    <td><input type="text" name="location" value={this.props.lesson.lesson_location} onChange={this.handleLocationChange} /></td>
+                    <td><input type="text" name="name" value={this.props.lesson.lesson_price} onChange={this.handlePriceChange} /></td>
+                    <td><input type="text" name="name" value={this.props.lesson.lesson_equip} onChange={this.handleEquipChange} /></td>
+                    <td><input type="text" name="name" value={this.props.lesson.lesson_language} onChange={this.handleLanguageChange} /></td>
+                    <td><input type="text" name="name" value={this.props.lesson.lesson_amountPeople} onChange={this.handleAmountPeopleChange} /></td>
+                    <td><input type="text" name="name" value={this.props.lesson.lesson_eMailTeacher} onChange={this.handleEmailTeacherChange} /></td>
+                    <td><input type="text" name="name" value={this.props.lesson.lesson_aboutTeacher} onChange={this.handleAboutTeacherChange} /></td>
+
                     <td>
                         <button onClick={this.handleSave} id={this.props.lesson._id}>save</button>
                         <button onClick={this.handleRerenderTest} >increase State Counter</button>
@@ -73,15 +96,14 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
             return (
                 <tr>
                     <td>{this.props.lesson.lesson_name}</td>
-                    <td>{this.props.lesson.lesson_value} €</td>
-                    <td>{this.props.lesson.lesson_duration} €</td>
-                    <td>{this.props.lesson.lesson_location} €</td>
+                    <td>{this.props.lesson.lesson_duration} Minuten</td>
+                    <td>{this.props.lesson.lesson_location} </td>
                     <td>{this.props.lesson.lesson_price} €</td>
-                    <td>{this.props.lesson.lesson_equip} €</td>
-                    <td>{this.props.lesson.lesson_language} €</td>
-                    <td>{this.props.lesson.lesson_amountPeople} €</td>
-                    <td>{this.props.lesson.lesson_eMailTeacher} €</td>
-                    <td>{this.props.lesson.lesson_aboutTeacher} €</td>
+                    <td>{this.props.lesson.lesson_equip} </td>
+                    <td>{this.props.lesson.lesson_language} </td>
+                    <td>{this.props.lesson.lesson_amountPeople} </td>
+                    <td>{this.props.lesson.lesson_eMailTeacher} </td>
+                    <td>{this.props.lesson.lesson_aboutTeacher} </td>
 
                     <td>
                         <button onClick={this.handleSwitchToEditMode}>edit</button>
@@ -103,9 +125,73 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
         }
         window.CS.clientAction(action);
     }
-    handleValueChange(event: any) {
+    handleDurationChange(event: any) {
         const newLesson = this.props.lesson;
-        newLesson.lesson_value = event.target.value;
+        newLesson.lesson_duration = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+        }
+        window.CS.clientAction(action);
+    }
+    handleLocationChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_location = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+        }
+        window.CS.clientAction(action);
+    }
+    handlePriceChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_price = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+        }
+        window.CS.clientAction(action);
+    }
+    handleEquipChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_equip = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+        }
+        window.CS.clientAction(action);
+    }
+    handleLanguageChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_language = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+            
+        }
+        window.CS.clientAction(action);
+    }
+    handleAmountPeopleChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_amountPeople = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+        }
+        window.CS.clientAction(action);
+    }
+    handleEmailTeacherChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_eMailTeacher = event.target.value;
+        const action: ILessonAction = {
+            type: ActionType.update_lesson,
+            lesson: newLesson
+        }
+        window.CS.clientAction(action);
+    }
+    handleAboutTeacherChange(event: any) {
+        const newLesson = this.props.lesson;
+        newLesson.lesson_aboutTeacher = event.target.value;
         const action: ILessonAction = {
             type: ActionType.update_lesson,
             lesson: newLesson
@@ -120,6 +206,7 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
           window.CS.clientAction(uiAction);
         axios.put('/lessons/update/' + this.props.lesson._id, this.props.lesson)
         .then(res => {
+            console.log(res)
             const uiAction: IAction = {
                 type: ActionType.lesson_updated
               }
@@ -147,3 +234,4 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
         window.CS.clientAction(action);
     }
 }
+
