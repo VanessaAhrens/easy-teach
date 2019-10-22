@@ -43,21 +43,10 @@ lessonRoutes.route('/:id').get(function (req, res) {
 
 //U: update the lesson with the given id
 // post -> put
-lessonRoutes.route('/update/:id').put(function (req, res) {
-    Lesson.findById(req.params.id, function (err, lesson) {
-        if (!lesson) res.status(404).send("Lesson to update not found, lesson _id:" + req.params.id);
-        else {
-            lesson.lesson_id = req.body.lesson_id;
-            lesson.lesson_name = req.body.lesson_name;
-            lesson.lesson_value = req.body.lesson_value;
-
-            lesson.save().then(lesson => {
-                res.json('lesson updated!');
-            })
-                .catch(err => {
-                    res.status(400).send("Update not possible");
-                });
-        }
+lessonRoutes.put('/update/:id', (req, res) => {
+    Lesson.findByIdAndUpdate(req.params.id, req.body).then(
+    lesson => {
+        res.json(lesson)
     });
 });
 
@@ -70,6 +59,14 @@ lessonRoutes.route('/delete/:id').post(function (req, res) {
         else
             res.json('lesson deleted!');
     });
+});
+
+lessonRoutes.post('/search', (req, res) => {
+    Lesson.find({}).then(
+        lesson => 
+        res.json(lesson)
+    )
+    .catch(err => res.send(err))
 });
 
 module.exports = lessonRoutes;

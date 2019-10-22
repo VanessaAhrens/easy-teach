@@ -11,9 +11,6 @@ let Lesson = new Schema({
     lesson_name: {
         type: String
     },
-    lesson_value: {
-        type: String
-    },
     lesson_duration: {
         type: Number
     },

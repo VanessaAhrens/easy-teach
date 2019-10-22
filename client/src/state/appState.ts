@@ -9,7 +9,6 @@ export interface ILogin{
     errorMessage:string;
 }
 
-
 export interface IUI{
     counter: number;
     loggedIn: boolean;
@@ -26,7 +25,6 @@ export interface IUI {
 export interface ILessonData {
     _id: string;
     lesson_name: string;
-    lesson_value: number;
     lesson_duration:number;
     lesson_location: string;
     lesson_price: number;
@@ -42,7 +40,6 @@ export interface IBM{
     user:IUser;
     lessons:ILessonData[]
 }
-
 
 export interface IState{
     UI:IUI;
