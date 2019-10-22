@@ -72,4 +72,12 @@ lessonRoutes.route('/delete/:id').post(function (req, res) {
     });
 });
 
+lessonRoutes.post('/search', (req, res) => {
+    Lesson.find({}).then(
+        lesson => 
+        res.json(lesson)
+    )
+    .catch(err => res.send(err))
+});
+
 module.exports = lessonRoutes;
