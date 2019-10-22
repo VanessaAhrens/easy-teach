@@ -3,7 +3,6 @@ import { ILessonAction } from './ShowLesson';
 import { ActionType, IAction } from '../framework/IAction';
 import { ILessonData, IState } from '../state/appState'
 import axios from 'axios';
-
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
 declare let window: IWindow;
@@ -75,6 +74,15 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
                 <tr>
                     <td>{this.props.lesson.lesson_name}</td>
                     <td>{this.props.lesson.lesson_value} €</td>
+                    <td>{this.props.lesson.lesson_duration} €</td>
+                    <td>{this.props.lesson.lesson_location} €</td>
+                    <td>{this.props.lesson.lesson_price} €</td>
+                    <td>{this.props.lesson.lesson_equip} €</td>
+                    <td>{this.props.lesson.lesson_language} €</td>
+                    <td>{this.props.lesson.lesson_amountPeople} €</td>
+                    <td>{this.props.lesson.lesson_eMailTeacher} €</td>
+                    <td>{this.props.lesson.lesson_aboutTeacher} €</td>
+
                     <td>
                         <button onClick={this.handleSwitchToEditMode}>edit</button>
                         <button onClick={this.handleDelete} id={this.props.lesson._id}>sell or dispose</button>

@@ -27,6 +27,15 @@ export interface ILessonData {
     _id: string;
     lesson_name: string;
     lesson_value: number;
+    lesson_duration:number;
+    lesson_location: string;
+    lesson_price: number;
+    lesson_equip: string;
+    lesson_language:string;
+    lesson_amountPeople: string;
+    lesson_eMailTeacher: string;
+    lesson_aboutTeacher: string;
+
   }
 
 export interface IBM{
