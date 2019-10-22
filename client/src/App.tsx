@@ -3,6 +3,7 @@ import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Register from './components/Register';
 import ShowLessons from './components/ShowLesson';
+import SearchBar from './components/SearchBar';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
 import { ILessonData, IState } from './state/appState'
@@ -28,8 +29,7 @@ reducerFunctions[ActionType.add_lessons_from_server] = function (newState: IStat
   newState.BM.lessons = action.lessons;
   return newState;
 }
-export default class App extends React.PureComponent<IProps> {
-
+export default class App extends React.PureComponent<IProps, IState > {
   componentDidMount() {
     const uiAction: IAction = {
       type: ActionType.server_called
@@ -46,11 +46,20 @@ export default class App extends React.PureComponent<IProps> {
     }).catch(function (error) { console.log(error); })
   }
 
+  handleQuery = (searchQuery: string) => {
+    axios.post('/lessons/search', searchQuery).then(response => {
+      console.log(response.data);
+    });
+  }
+
   render() {
     window.CS.log("App --> render()")
     return (
       <div className="container">.
         <NavBar />
+        <SearchBar
+        onSearch={this.handleQuery}
+        />
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/register" component={Register} />
