@@ -24,21 +24,23 @@ export interface IUI {
 
 export interface ILessonData {
     _id: string;
-    lesson_name: string;
-    lesson_duration:number;
-    lesson_location: string;
-    lesson_price: number;
-    lesson_equip: string;
-    lesson_language:string;
-    lesson_amountPeople: string;
-    lesson_eMailTeacher: string;
-    lesson_aboutTeacher: string;
+    lesson_name?: string;
+    lesson_duration?:number;
+    lesson_location?: string;
+    lesson_price?: number;
+    lesson_equip?: string;
+    lesson_language?:string;
+    lesson_amountPeople?: string;
+    lesson_eMailTeacher?: string;
+    lesson_aboutTeacher?: string;
 
   }
 
 export interface IBM{
     user:IUser;
-    lessons:ILessonData[]
+    lessons:ILessonData[],
+    searchQuery:string,
+    searchResult: any
 }
 
 export interface IState{
@@ -47,20 +49,23 @@ export interface IState{
 }
 
 // initial state 
+// initial state
 export const initial:IState = {
-	UI: {
-		counter: 0,
-		loggedIn: false,
-        waitingForResponse: false,
-        Login: {errorMessage:""}
-    },
-	BM: {
-        user:{
-            firstname:"",
-            lastname:"",
-            username:"",
-            password:""
-        },
-        lessons:[]
-	}
+    UI: {
+        counter: 0,
+        loggedIn: false,
+       waitingForResponse: false,
+       Login: {errorMessage:""}
+   },
+    BM: {
+       user:{
+           firstname:"",
+           lastname:"",
+           username:"",
+           password:""
+       },
+       lessons:[],
+       searchQuery:"",
+       searchResult: []
+    }
 };

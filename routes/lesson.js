@@ -7,6 +7,14 @@ let Lesson = require('../models/Lesson');
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
 //R: read all lessons
 
+lessonRoutes.get('/search', (req, res) => {
+    Lesson.find({lesson_name: req.query.query}).then(
+        lesson => 
+        res.json(lesson)
+    )
+    .catch(err => res.send(err))
+});
+
 lessonRoutes.route('/read').get(function (req, res) {
     console.log("got a request");
     Lesson.find(function (err, lessons) {
@@ -61,12 +69,5 @@ lessonRoutes.route('/delete/:id').post(function (req, res) {
     });
 });
 
-lessonRoutes.post('/search', (req, res) => {
-    Lesson.find({}).then(
-        lesson => 
-        res.json(lesson)
-    )
-    .catch(err => res.send(err))
-});
 
 module.exports = lessonRoutes;

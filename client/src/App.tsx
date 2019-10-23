@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ShowLessons from './components/ShowLesson';
 import SearchBar from './components/SearchBar';
+import CreateLesson from './components/CreateLesson';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
 import { ILessonData, IState } from './state/appState'
@@ -57,14 +58,14 @@ export default class App extends React.PureComponent<IProps, IState > {
     return (
       <div className="container">.
         <NavBar />
-        <SearchBar
-        onSearch={this.handleQuery}
-        />
+        <SearchBar />
+        {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) => <p key={item._id}>{item._id}</p>) : null}
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/register" component={Register} />
           <Route path="/" component={Login} />
         </Switch>
+        <CreateLesson lesson={{_id: "wefwf"}} type = { ActionType.update_lesson}/>
       </div>
     );
   }
