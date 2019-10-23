@@ -56,7 +56,7 @@ export default class App extends React.PureComponent<IProps, IState > {
   render() {
     window.CS.log("App --> render()")
     return (
-      <div className="container">.
+      <div className="container-fluid">.
         <NavBar />
         <SearchBar />
         {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) => <p key={item._id}>{item._id}</p>) : null}
