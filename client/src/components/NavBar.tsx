@@ -7,7 +7,7 @@ const nav = ( props: any ) => {
             <ul>
                 <li><NavLink exact={true} to="/">Login</NavLink></li>
                 <li><NavLink to="/register">Register</NavLink></li>
-                <li><NavLink to="/showlessons">Lessons</NavLink></li>
+                <li><NavLink to="/createlesson">Lessons</NavLink></li>
             </ul>
         </nav>
     )

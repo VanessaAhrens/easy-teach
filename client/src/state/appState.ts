@@ -23,8 +23,8 @@ export interface IUI {
 }
 
 export interface ILessonData {
-    _id: string;
-    lesson_name?: string;
+    _id?: string;
+    lesson_name: string;
     lesson_duration?:number;
     lesson_location?: string;
     lesson_price?: number;
