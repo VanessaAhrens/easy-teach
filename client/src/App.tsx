@@ -62,12 +62,11 @@ export default class App extends React.PureComponent<IProps, IState > {
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/register" component={Register} />
+          <Route path="/createlesson" component={CreateLesson} />
           <Route path="/" component={Login} />
+          
         </Switch>
-        <CreateLesson lesson={{_id: "wefwf"}} type = { ActionType.update_lesson}/>
       </div>
     );
   }
-
 }
-
