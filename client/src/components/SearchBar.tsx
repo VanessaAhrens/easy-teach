@@ -4,6 +4,8 @@ import { IWindow } from '../framework/IWindow';
 import { IState } from '../state/appState'
 import { reducerFunctions } from '../reducer/appReducer';
 import axios from 'axios';
+import SimpleLesson from './SimpleLesson';
+
 declare const window: IWindow;
 export interface ISearchAction extends IAction {
  search: string;
@@ -58,9 +60,17 @@ class SearchBar extends Component<{}, IState> {
            placeholder="Search For Lesson" />
        </div>
        <div className="control">
-         <a className="button is-info" onClick={this.handleQuery}>
+         <a className="btn btn-primary" onClick={this.handleQuery}>
            Search
        </a>
+       <table>
+            <tbody>
+              <tr><th>description</th><th>duration</th><th>location</th><th>price</th><th>equip</th><th>language</th><th>amount of People</th><th>Email</th><th>about the Teacher</th></tr>
+              {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) => <SimpleLesson key={item._id} lesson={item} edit={false} />) : null}
+            </tbody>
+          </table>
+
+
        </div>
      </div>
    );

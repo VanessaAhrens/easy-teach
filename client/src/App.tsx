@@ -59,7 +59,6 @@ export default class App extends React.PureComponent<IProps, IState > {
       <div className="container-fluid">.
         <NavBar />
         <SearchBar />
-        {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) => <p key={item._id}>{item._id}</p>) : null}
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/register" component={Register} />
