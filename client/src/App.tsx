@@ -58,20 +58,17 @@ export default class App extends React.PureComponent<IProps, IState > {
     return (
       <div className="container-fluid">.
         <NavBar />
-        <SearchBar />
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/createlesson" component={CreateLesson} />
-         
+          <Route path="/searchresult" component={SearchResult} />
           <Route path="/" component={SearchBar} />
-          
+          <Route path="/LessonDetail/:id" render={(props)=><LessonDetail {...props}/>} />
+
         </Switch>
       </div>
     );
   }
 } 
-
-//<Route path="/searchresult" component={SearchResult} />
-//<Route path="/:ID" component={LessonDetail} />

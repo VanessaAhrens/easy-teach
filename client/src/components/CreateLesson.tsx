@@ -5,17 +5,15 @@ import { ILessonData, IState } from '../state/appState'
 import axios from 'axios';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
-
+import history from '../framework/history';
+import './CreateLesson.css';
 import mongoose from 'mongoose';
 import { string } from 'prop-types';
 declare let window: IWindow;
 
-//import SimpleLesson from './SimpleLesson'
 
-//this file defines the React component that renders a single lesson to the browser window
-//it also contains the logic to change lesson properties and save the changes to the database
-//most of the used React framework features are already explained in the comments of App.js
-//so this code hopefully mostly explains itself ...
+
+
 interface IJSXState{
     lesson:{
     [key:string]:string|number;
@@ -69,20 +67,20 @@ export default class CreateLesson extends React.Component<{},IJSXState> {
     render() {
         {console.log(this.state.lesson)}    
             return (
-                <div>
-                    <input className= "createLesson" id = "createName" type="text" name="lesson_name" value={this.state.lesson.lesson_name} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createDuration" type="text" name="lesson_duration" value={this.state.lesson.lesson_duration} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createLocation" type="text" name="lesson_location" value={this.state.lesson.lesson_location} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createPrice" type="text" name="lesson_price" value={this.state.lesson.lesson_price} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createEquip" type="text" name="lesson_equip" value={this.state.lesson.lesson_equip} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createLanguage" type="text" name="lesson_language" value={this.state.lesson.lesson_language} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createAmount" type="text" name="lesson_amountPeople" value={this.state.lesson.lesson_amountPeople} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createeMail" type="text" name="lesson_eMailTeacher" value={this.state.lesson.lesson_eMailTeacher} onChange={this.handleChange} />
-                    <input className= "createLesson" id = "createAbout" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} />
+                <div className= "divAroundAllCreate">
+                    <div className= "divAroundCreate">Lesson Name<input className= "createLesson" id = "createName" type="text" name="lesson_name" value={this.state.lesson.lesson_name} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Duration<input className= "createLesson" id = "createDuration" type="text" name="lesson_duration" value={this.state.lesson.lesson_duration} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Location<input className= "createLesson" id = "createLocation" type="text" name="lesson_location" value={this.state.lesson.lesson_location} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Price<input className= "createLesson" id = "createPrice" type="text" name="lesson_price" value={this.state.lesson.lesson_price} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Needed Equipment<input className= "createLesson" id = "createEquip" type="text" name="lesson_equip" value={this.state.lesson.lesson_equip} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Teaching Language<input className= "createLesson" id = "createLanguage" type="text" name="lesson_language" value={this.state.lesson.lesson_language} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Maximum amount of People per Course<input className= "createLesson" id = "createAmount" type="text" name="lesson_amountPeople" value={this.state.lesson.lesson_amountPeople} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">E-Mail Adress<input className= "createLesson" id = "createEmail" type="text" name="lesson_eMailTeacher" value={this.state.lesson.lesson_eMailTeacher} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">About the Teacher<input className= "createLesson" id = "createaboutTeacher" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} /></div>
                     
-                    <button onClick={this.handleSave}>save</button>
+                    <button className="saveButton" onClick={this.handleSave}>save</button>
                     
-                
+                    
                 </div>
             )
         
@@ -98,23 +96,34 @@ export default class CreateLesson extends React.Component<{},IJSXState> {
         });
     }
 
+/*this function handles the save and will be later used for the save-button.
+
+
+
+*/ 
+
+
     handleSave = () => {
         const uiAction: IAction = {
           type: ActionType.server_called
         }
         window.CS.clientAction(uiAction);
         const newLesson: ILessonData = {
-          _id: mongoose.Types.ObjectId().toString(),
-          ...this.state.lesson
+          _id: mongoose.Types.ObjectId().toString(),    //retrieves the ID from Mongoose
+          ...this.state.lesson                          // and the rest of the state
         }
         const action: ILessonAction = {
             type: ActionType.create_lesson,
             lesson: newLesson
           }
         axios.post('/lessons/add', newLesson)
+        
         .then(res => {
           window.CS.clientAction(action);
           console.log(res.data._id, res.data)
         });
+        history.push('/')
+        
+        
       }
 }
