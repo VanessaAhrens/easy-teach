@@ -24,7 +24,7 @@ class SearchResult extends Component<{}, IState> {
       type: ActionType.update_search,
       search: e.target.value
     }
-    history.push('/lessonDetail');
+    history.push('/LessonDetail/:id');
     window.CS.clientAction(action)
   }
   render() {
