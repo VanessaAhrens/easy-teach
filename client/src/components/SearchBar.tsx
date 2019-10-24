@@ -5,6 +5,7 @@ import { IState } from '../state/appState'
 import { reducerFunctions } from '../reducer/appReducer';
 import axios from 'axios';
 import SimpleLesson from './SimpleLesson';
+import history from '../framework/history';
 
 declare const window: IWindow;
 export interface ISearchAction extends IAction {
@@ -32,6 +33,7 @@ class SearchBar extends Component<{}, IState> {
        type: ActionType.update_search_results,
        data: response.data
      }
+     history.push('/searchresult');
      window.CS.clientAction(action);
    });
  }
@@ -63,13 +65,6 @@ class SearchBar extends Component<{}, IState> {
          <a className="btn btn-primary" onClick={this.handleQuery}>
            Search
        </a>
-       <table>
-            <tbody>
-              <tr><th>description</th><th>duration</th><th>location</th><th>price</th><th>equip</th><th>language</th><th>amount of People</th><th>Email</th><th>about the Teacher</th></tr>
-              {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) => <SimpleLesson key={item._id} lesson={item} edit={false} />) : null}
-            </tbody>
-          </table>
-
 
        </div>
      </div>
