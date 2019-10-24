@@ -62,12 +62,17 @@ export default class App extends React.PureComponent<IProps, IState > {
         {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) => <p key={item._id}>{item._id}</p>) : null}
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
+          <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/createlesson" component={CreateLesson} />
-          <Route path="/" component={Login} />
+         
+          <Route path="/" component={SearchBar} />
           
         </Switch>
       </div>
     );
   }
-}
+} 
+
+//<Route path="/searchresult" component={SearchResult} />
+//<Route path="/:ID" component={LessonDetail} />
