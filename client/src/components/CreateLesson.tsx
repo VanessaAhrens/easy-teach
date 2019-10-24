@@ -16,7 +16,7 @@ declare let window: IWindow;
 //it also contains the logic to change lesson properties and save the changes to the database
 //most of the used React framework features are already explained in the comments of App.js
 //so this code hopefully mostly explains itself ...
-interface IJSXState{
+/* interface IJSXState{
     [key:number]:string|number;
     lesson_name: any;
     lesson_duration?:any;
@@ -187,7 +187,7 @@ export default class CreateLesson extends React.PureComponent<{},IJSXState> {
                 type: ActionType.lesson_updated
               }
               window.CS.clientAction(uiAction);
-        });*/
+        });
     }
     
     handleRerenderTest = (event: any) => {
@@ -228,3 +228,4 @@ export default class CreateLesson extends React.PureComponent<{},IJSXState> {
         });
       }
 }
+*/
