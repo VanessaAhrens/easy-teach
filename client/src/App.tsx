@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ShowLessons from './components/ShowLesson';
 import SearchBar from './components/SearchBar';
+import CreateLesson from './components/CreateLesson';
 import LessonDetail from './components/LessonDetail';
 
 import { Switch, Route } from 'react-router-dom';
@@ -61,14 +62,18 @@ export default class App extends React.PureComponent<IProps, IState > {
         <NavBar />
         <SearchBar />
         <Switch>
-         <Route path="/showlessons" component={ShowLessons} />
-         <Route path="/login" component={Login} />
-         <Route path="/register" component={Register} />
-         
-        <Route path="/LessonDetail/:id" render={(props)=><LessonDetail {...props}/>} />
-         <Route path="/" component={SearchBar} />
-       </Switch>
+          <Route path="/showlessons" component={ShowLessons} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/createlesson" component={CreateLesson} />
+          <Route path="/LessonDetail/:id" render={(props)=><LessonDetail {...props}/>} />
+          <Route path="/" component={SearchBar} />
+          
+        </Switch>
       </div>
     );
   }
-}
+} 
+
+//<Route path="/searchresult" component={SearchResult} />
+//<Route path="/:ID" component={LessonDetail} />

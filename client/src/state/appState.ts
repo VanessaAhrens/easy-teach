@@ -13,12 +13,6 @@ export interface IUI{
     counter: number;
     loggedIn: boolean;
     waitingForResponse:boolean;
-}
-
-export interface IUI {
-    counter: number;
-    loggedIn: boolean;
-    waitingForResponse: boolean;
     Login: ILogin;
 }
 
