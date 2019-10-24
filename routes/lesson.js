@@ -42,12 +42,19 @@ lessonRoutes.route('/add').post(function (req, res) {
 
 //R: read one lesson defined be the id of the lesson
 
-lessonRoutes.route('/:id').get(function (req, res) {
+
+lessonRoutes.route('/read/:id').get(function (req, res) {
     let id = req.params.id;
     Lesson.findById(id, function (err, lesson) {
         res.json(lesson);
     });
 });
+/*lessonRoutes.route('/:id').get(function (req, res) {
+    let id = req.params.id;
+    Lesson.findById(id, function (err, lesson) {
+        res.json(lesson);
+    });
+});*/
 
 //U: update the lesson with the given id
 // post -> put

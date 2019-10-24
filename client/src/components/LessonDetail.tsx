@@ -25,14 +25,14 @@ export default class LessonDetail extends React.Component<IProps>  {
     }
     componentDidMount() {
         //const selectedLesson = window.CS.getBMState().lessons.filter(lesson => lesson._id === this.props.match.params.id)[0];
-        axios.get('/lessons/'+this.props.match.params.id).then(
+        axios.get('/lessons/read/'+this.props.match.params.id).then(
             response => {
-                console.log(response)
+               
                 this.lesson = response.data}
         )
     }
     render() {
-        
+        console.log("id",window.CS.getBMState().lessons[0])
         console.log(window.CS.getBMState().lessons);
         return (
             <div>

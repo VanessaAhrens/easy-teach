@@ -24,7 +24,8 @@ class SearchResult extends Component<{}, IState> {
       type: ActionType.update_search,
       search: e.target.value
     }
-    history.push('/LessonDetail/:id');
+    
+    history.push('/LessonDetail/read/'+e.target.id);
     window.CS.clientAction(action)
   }
   render() {
@@ -33,11 +34,11 @@ class SearchResult extends Component<{}, IState> {
         <tbody>
           <tr><th>Description</th><th>Location</th><th></th></tr>
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
-            <tr>
+            <tr key = "listOfLessons">
               <td>{item.lesson_name}</td>
               <td> {item.lesson_location}</td>
               <td>
-                <button onClick={this.handleChangeHandler} >Show</button>
+                <button onClick={this.handleChangeHandler} id={item._id}>Show</button>
               </td>
             </tr>) : null}
         </tbody>
