@@ -13,18 +13,12 @@ export interface IUI{
     counter: number;
     loggedIn: boolean;
     waitingForResponse:boolean;
-}
-
-export interface IUI {
-    counter: number;
-    loggedIn: boolean;
-    waitingForResponse: boolean;
     Login: ILogin;
 }
 
 export interface ILessonData {
-    _id: string;
-    lesson_name?: string;
+    _id?: string;
+    lesson_name: string;
     lesson_duration?:number;
     lesson_location?: string;
     lesson_price?: number;

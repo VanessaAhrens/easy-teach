@@ -33,10 +33,10 @@ lessonRoutes.route('/add').post(function (req, res) {
     let lesson = new Lesson(req.body);
     lesson.save()
         .then(lesson => {
-            res.status(200).json({ 'lesson': 'lesson added successfully' });
+            res.status(200).json(lesson);
         })
         .catch(err => {
-            res.status(400).send('adding new lesson failed');
+            res.status(400).send(err);
         });
 });
 

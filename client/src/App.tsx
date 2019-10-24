@@ -6,6 +6,7 @@ import ShowLessons from './components/ShowLesson';
 import SearchBar from './components/SearchBar';
 import SearchResult from './components/SearchResult';
 import CreateLesson from './components/CreateLesson';
+import LessonDetail from './components/LessonDetail';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
 import { ILessonData, IState } from './state/appState'
@@ -53,23 +54,21 @@ export default class App extends React.PureComponent<IProps, IState > {
       console.log(response.data);
     });
   }
-
+//component={LessonDetail}
   render() {
     window.CS.log("App --> render()")
     return (
       <div className="container-fluid">.
         <NavBar />
         <Switch>
-         <Route path="/showlessons" component={ShowLessons} />
-         <Route path="/login" component={Login} />
-         <Route path="/register" component={Register} />
-         <Route path="/createlesson" component={CreateLesson} />
-         <Route path="/searchresult" component={SearchResult} />
-         <Route path="/" component={SearchBar} />
-       </Switch>        
+          <Route path="/showlessons" component={ShowLessons} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/createlesson" component={CreateLesson} />
+          <Route path="/LessonDetail/:id" render={(props)=><LessonDetail {...props}/>} />
+          <Route path="/" component={SearchBar} />
+        </Switch>
       </div>
     );
   }
-
-}
-
+} 

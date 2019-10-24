@@ -1,32 +1,38 @@
-import React, { Component } from 'react'
+import React, { ChangeEvent } from 'react'
 import { ILessonAction } from './ShowLesson';
 import { ActionType, IAction } from '../framework/IAction';
 import { ILessonData, IState } from '../state/appState'
 import axios from 'axios';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
-
+import history from '../framework/history';
+import './CreateLesson.css';
 import mongoose from 'mongoose';
+import { string } from 'prop-types';
 declare let window: IWindow;
 
-//import SimpleLesson from './SimpleLesson'
 
-//this file defines the React component that renders a single lesson to the browser window
-//it also contains the logic to change lesson properties and save the changes to the database
-//most of the used React framework features are already explained in the comments of App.js
-//so this code hopefully mostly explains itself ...
 
-interface IProps extends IAction  {
-    lesson: ILessonData;
-}
 
-interface IJSXState {
+interface IJSXState{
+    lesson:{
+    [key:string]:string|number;
+    lesson_name: any;
+    lesson_duration?:any;
+    lesson_location?: any;
+    lesson_price?: any;
+    lesson_equip?: any;
+    lesson_language?:any;
+    lesson_amountPeople?: any;
+    lesson_eMailTeacher?: any;
+    lesson_aboutTeacher?: any;
+    }
 }
 
 reducerFunctions[ActionType.lesson_updated] = function (newState: IState, updateAction: ILessonAction) {
     newState.UI.waitingForResponse=false;
 }
-reducerFunctions[ActionType.update_lesson] = function (newState: IState, updateAction: ILessonAction) {
+reducerFunctions[ActionType.create_lesson] = function (newState: IState, updateAction: ILessonAction) {
     let newLesson: any = {
         lesson_name: updateAction.lesson.lesson_name,
         lesson_duration: updateAction.lesson.lesson_duration,
@@ -38,173 +44,86 @@ reducerFunctions[ActionType.update_lesson] = function (newState: IState, updateA
         lesson_eMailTeacher: updateAction.lesson.lesson_eMailTeacher,
         lesson_aboutTeacher: updateAction.lesson.lesson_aboutTeacher
     };
+    console.log(newLesson);
     return newLesson;
 }
 
 
-export default class CreateLesson extends React.PureComponent<IProps, IJSXState> {
-
-    constructor(props: IProps) {
-        super(props);
+export default class CreateLesson extends React.Component<{},IJSXState> {
+    state:IJSXState = {
+        lesson: {
+            lesson_name: '',
+            lesson_duration: 0,
+            lesson_location: '',
+            lesson_price: 0,
+            lesson_equip: '',
+            lesson_language: '',
+            lesson_amountPeople: '',
+            lesson_eMailTeacher: '',
+            lesson_aboutTeacher: ''
+        }
     }
 
     render() {
-        
+        {console.log(this.state.lesson)}    
             return (
-                <div>
-                    <input className= "createLesson" id = "createName" type="text" name="name" value={this.props.lesson.lesson_name} onChange={this.handleNameChange} />
-                    <input className= "createLesson" id = "createDuration" type="text" name="name" value={this.props.lesson.lesson_duration} onChange={this.handleDurationChange} />
-                    <input className= "createLesson" id = "createLocation" type="text" name="name" value={this.props.lesson.lesson_location} onChange={this.handleLocationChange} />
-                    <input className= "createLesson" id = "createPrice" type="text" name="name" value={this.props.lesson.lesson_price} onChange={this.handlePriceChange} />
-                    <input className= "createLesson" id = "createEquip" type="text" name="name" value={this.props.lesson.lesson_equip} onChange={this.handleEquipChange} />
-                    <input className= "createLesson" id = "createLanguage" type="text" name="name" value={this.props.lesson.lesson_language} onChange={this.handleLanguageChange} />
-                    <input className= "createLesson" id = "createAmount" type="text" name="name" value={this.props.lesson.lesson_amountPeople} onChange={this.handleAmountPeopleChange} />
-                    <input className= "createLesson" id = "createeMail" type="text" name="name" value={this.props.lesson.lesson_eMailTeacher} onChange={this.handleEmailTeacherChange} />
-                    <input className= "createLesson" id = "createAbout" type="text" name="name" value={this.props.lesson.lesson_aboutTeacher} onChange={this.handleAboutTeacherChange} />
+                <div className= "divAroundAllCreate">
+                    <div className= "divAroundCreate">Lesson Name<input className= "createLesson" id = "createName" type="text" name="lesson_name" value={this.state.lesson.lesson_name} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Duration<input className= "createLesson" id = "createDuration" type="text" name="lesson_duration" value={this.state.lesson.lesson_duration} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Location<input className= "createLesson" id = "createLocation" type="text" name="lesson_location" value={this.state.lesson.lesson_location} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Price<input className= "createLesson" id = "createPrice" type="text" name="lesson_price" value={this.state.lesson.lesson_price} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Needed Equipment<input className= "createLesson" id = "createEquip" type="text" name="lesson_equip" value={this.state.lesson.lesson_equip} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Teaching Language<input className= "createLesson" id = "createLanguage" type="text" name="lesson_language" value={this.state.lesson.lesson_language} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">Maximum amount of People per Course<input className= "createLesson" id = "createAmount" type="text" name="lesson_amountPeople" value={this.state.lesson.lesson_amountPeople} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">E-Mail Adress<input className= "createLesson" id = "createEmail" type="text" name="lesson_eMailTeacher" value={this.state.lesson.lesson_eMailTeacher} onChange={this.handleChange} /></div>
+                    <div className= "divAroundCreate">About the Teacher<input className= "createLesson" id = "createaboutTeacher" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} /></div>
                     
-                    <button onClick={this.handleSave} id={this.props.lesson._id}>save</button>
+                    <button className="saveButton" onClick={this.handleSave}>save</button>
                     
-                
+                    
                 </div>
             )
         
     }
     
-    handleNameChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_name = event.target.value
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
+    handleChange = (event: ChangeEvent) => {
+        const target = event.target as HTMLInputElement
+        const name = target.name as string;
+        let newLesson = this.state.lesson;
+        newLesson[name] = target.value;
+        this.setState({
             lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleDurationChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_duration = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleLocationChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_location = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handlePriceChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_price = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleEquipChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_equip = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleLanguageChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_language = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-            
-        }
-        window.CS.clientAction(action);
-    }
-    handleAmountPeopleChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_amountPeople = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleEmailTeacherChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_eMailTeacher = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleAboutTeacherChange = (event: any) => {
-        const newLesson = this.props.lesson;
-        newLesson.lesson_aboutTeacher = event.target.value;
-        const action: ILessonAction = {
-            type: ActionType.update_lesson,
-            lesson: newLesson
-        }
-        window.CS.clientAction(action);
-    }
-    handleSave = (event: any) => {
-        this.handleCreateLesson();
-
-        this.setState({ edit_mode: false });
-        const uiAction: IAction = {
-            type: ActionType.server_called
-          }
-          window.CS.clientAction(uiAction);
-        axios.put('/lessons/update/' + this.props.lesson._id, this.props.lesson)
-        .then(res => {
-            console.log(res)
-            const uiAction: IAction = {
-                type: ActionType.lesson_updated
-              }
-              window.CS.clientAction(uiAction);
         });
     }
-    
-    handleRerenderTest = (event: any) => {
-        const action: IAction = {
-            type: ActionType.render_test,
-        }
-        window.CS.clientAction(action);
-    }
+
+/*this function handles the save and will be later used for the save-button.
 
 
-    handleCreateLesson = () => {
-        console.log("handleCreateLesson invoked");
+
+*/ 
+
+
+    handleSave = () => {
         const uiAction: IAction = {
           type: ActionType.server_called
         }
         window.CS.clientAction(uiAction);
         const newLesson: ILessonData = {
-          _id: mongoose.Types.ObjectId().toString(),
-          lesson_name: this.props.lesson.lesson_name,
-          lesson_duration:this.props.lesson.lesson_duration,
-          lesson_location: this.props.lesson.lesson_location,
-          lesson_price: this.props.lesson.lesson_price,
-          lesson_equip: this.props.lesson.lesson_equip,
-          lesson_language:this.props.lesson.lesson_language,
-          lesson_amountPeople: this.props.lesson.lesson_amountPeople,
-          lesson_eMailTeacher: this.props.lesson.lesson_eMailTeacher,
-          lesson_aboutTeacher: this.props.lesson.lesson_aboutTeacher,
+          _id: mongoose.Types.ObjectId().toString(),    //retrieves the ID from Mongoose
+          ...this.state.lesson                          // and the rest of the state
         }
-        console.log(newLesson);
         const action: ILessonAction = {
             type: ActionType.create_lesson,
             lesson: newLesson
           }
         axios.post('/lessons/add', newLesson)
+        
         .then(res => {
           window.CS.clientAction(action);
-          console.log(res.data)
+          console.log(res.data._id, res.data)
         });
+        history.push('/')
+        
+        
       }
 }
