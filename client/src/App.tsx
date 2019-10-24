@@ -6,7 +6,6 @@ import ShowLessons from './components/ShowLesson';
 import SearchBar from './components/SearchBar';
 import CreateLesson from './components/CreateLesson';
 import LessonDetail from './components/LessonDetail';
-
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
 import { ILessonData, IState } from './state/appState'
@@ -60,7 +59,6 @@ export default class App extends React.PureComponent<IProps, IState > {
     return (
       <div className="container-fluid">.
         <NavBar />
-        <SearchBar />
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
           <Route path="/login" component={Login} />
@@ -68,12 +66,10 @@ export default class App extends React.PureComponent<IProps, IState > {
           <Route path="/createlesson" component={CreateLesson} />
           <Route path="/LessonDetail/:id" render={(props)=><LessonDetail {...props}/>} />
           <Route path="/" component={SearchBar} />
-          
+          <Route path="/LessonDetail/:id" render={(props)=><LessonDetail {...props}/>} />
+
         </Switch>
       </div>
     );
   }
 } 
-
-//<Route path="/searchresult" component={SearchResult} />
-//<Route path="/:ID" component={LessonDetail} />
