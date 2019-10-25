@@ -59,7 +59,7 @@ export default class App extends React.PureComponent<IProps, IState > {
   render() {
     window.CS.log("App --> render()")
     return (
-      <div className="container-fluid">.
+      <div className="container-fluid">
         <NavBar />
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
