@@ -116,6 +116,7 @@ export default class CreateLesson extends React.Component<{},IJSXState> {
             type: ActionType.create_lesson,
             lesson: newLesson
           }
+          
         axios.post('/lessons/add', newLesson)
         
         .then(res => {

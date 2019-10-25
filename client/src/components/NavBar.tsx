@@ -11,6 +11,7 @@ const nav = (props: any) => {
             <Nav.Link style={{color: '#231B53'}} href="/login">Login</Nav.Link>
             <Nav.Link style={{color: '#231B53'}} href="/register">Register</Nav.Link>
             <Nav.Link style={{color: '#231B53'}} href="/createlesson">Lessons</Nav.Link>
+            <Nav.Link  style={{color: '#231B53'}} href="/editprofile">Edit Profile</Nav.Link>
         </Navbar>
     )
 }

@@ -13,6 +13,7 @@ import { ILessonData, IState } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import EditProfile from './components/EditProfile';
 
 import { IWindow } from './framework/IWindow'
 declare let window: IWindow;
@@ -59,7 +60,7 @@ export default class App extends React.PureComponent<IProps, IState > {
   render() {
     window.CS.log("App --> render()")
     return (
-      <div className="container-fluid">.
+      <div className="container-fluid">
         <NavBar />
         <Switch>
           <Route path="/showlessons" component={ShowLessons} />
@@ -68,7 +69,10 @@ export default class App extends React.PureComponent<IProps, IState > {
           <Route path="/createlesson" component={CreateLesson} />
           <Route path="/searchResult" component={SearchResult} />
           <Route path="/LessonDetail/read/:id" render={(props)=><LessonDetail {...props}/>} />
+          <Route path="/editprofile" component={EditProfile} edit={false}/>
           <Route path="/" component={SearchBar} />
+          
+          
         </Switch>
       </div>
     );

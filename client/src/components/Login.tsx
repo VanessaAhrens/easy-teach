@@ -101,7 +101,7 @@ export default class Login extends Component {
                         user: data as IUser
                     }
                     window.CS.clientAction(loggedinAction);
-                    history.push("/showlessons");
+                    history.push("/");
                 }
             });
     }

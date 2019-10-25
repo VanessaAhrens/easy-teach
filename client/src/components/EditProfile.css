@@ -1,0 +1,13 @@
+.Edit {
+display: flex;
+flex-direction: row;
+
+}
+
+button {
+
+width: 100px;
+height: 30px;
+margin-left: 100px;
+
+}
