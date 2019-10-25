@@ -7,6 +7,7 @@ import axios from 'axios';
 import SimpleLesson from './SimpleLesson';
 import SearchBar from './SearchBar';
 import history from '../framework/history';
+import { Link } from 'react-router-dom';
 
 declare const window: IWindow;
 export interface ISearchAction extends IAction {
@@ -18,7 +19,7 @@ export interface ISearchResultAction extends IAction {
 }
 
 class SearchResult extends Component<{}, IState> {
-
+/*
   handleChangeHandler = (e: any) => {
     const action: ISearchAction = {
       type: ActionType.update_search,
@@ -27,18 +28,18 @@ class SearchResult extends Component<{}, IState> {
     
     history.push('/LessonDetail/read/'+e.target.id);
     window.CS.clientAction(action)
-  }
+  }   onClick={this.handleChangeHandler}*/
   render() {
     return (
       <table>
         <tbody>
           <tr><th>Description</th><th>Location</th><th></th></tr>
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
-            <tr key = "listOfLessons">
+            <tr key = {item._id}>
               <td>{item.lesson_name}</td>
               <td> {item.lesson_location}</td>
               <td>
-                <button onClick={this.handleChangeHandler} id={item._id}>Show</button>
+                <button id={item._id}><Link to={'/LessonDetail/read/'+item._id}>Show</Link></button>
               </td>
             </tr>) : null}
         </tbody>

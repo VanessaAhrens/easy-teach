@@ -12,6 +12,7 @@ import { IAction, ActionType } from './framework/IAction';
 import { ILessonData, IState } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import EditProfile from './components/EditProfile';
 
 import { IWindow } from './framework/IWindow'

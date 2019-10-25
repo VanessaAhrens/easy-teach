@@ -29,6 +29,7 @@ reducerFunctions[ActionType.update_search_results] = function (newState: IState,
 class SearchBar extends Component<{}, IState> {
  handleQuery = async () => {
    await axios.get('/lessons/search?query='+window.CS.getBMState().searchQuery).then(response => {
+     console.log(response)
      const action: ISearchResultAction = {
        type: ActionType.update_search_results,
        data: response.data
@@ -62,8 +63,8 @@ class SearchBar extends Component<{}, IState> {
            placeholder="Search For Lesson" />
        </div>
        <div className="control">
-         <a className="btn btn-primary" onClick={this.handleQuery}>
-           Search
+         <a className="btn btn-primary"  onClick={this.handleQuery}>
+            Search
        </a>
 
        </div>

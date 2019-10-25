@@ -122,30 +122,6 @@ handleChange = (event: ChangeEvent) => {
       user: newUser
   });
 }
-handleSave = () => {
-        const uiAction: IAction = {
-          type: ActionType.server_called
-        }
-        window.CS.clientAction(uiAction);
-        const newLesson: ILessonData = {
-          _id: mongoose.Types.ObjectId().toString(),    //retrieves the ID from Mongoose
-          ...this.state.lesson                          // and the rest of the state
-        }
-        const action: ILessonAction = {
-            type: ActionType.create_lesson,
-            lesson: newLesson
-          }
-          
-        axios.post('/lessons/add', newLesson)
-        
-        .then(res => {
-          window.CS.clientAction(action);
-          console.log(res.data._id, res.data)
-        });
-        history.push('/')
-        
-        
-      }
 
 }
 
