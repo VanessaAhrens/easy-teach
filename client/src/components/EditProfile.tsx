@@ -9,22 +9,36 @@ import history from '../framework/history';
 import { IWindow } from '../framework/IWindow'
 
 declare let window: IWindow;
-
-interface IProps{};
-interface IJSXState { };
-export interface ILessonAction extends IAction {
-  lesson: ILessonData
-}
-reducerFunctions[ActionType.create_lesson] = function (newState: IState, action: ILessonAction) {
-  newState.BM.lessons.push(action.lesson);
-  newState.UI.waitingForResponse=false;
-  return newState;
+interface IProps {
+  edit: boolean;
 }
 
-export default class EditProfile extends Component {
+interface IJSXState {
+  edit_mode: boolean;
+}
+
+export default class EditProfile extends React.PureComponent<IProps, IJSXState> {
+
+  constructor(props: IProps) {
+      super(props);
+      this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this)
+      this.handleLogout = this.handleLogout.bind(this)
+
+  this.state = {
+    edit_mode: props.edit,
+}}
+
   render() {
 
-      if (window.CS.getUIState().loggedIn)
+      if (window.CS.getUIState().loggedIn) 
+
+      if (this.state.edit_mode == true)
+          return (
+            <div>
+
+            </div>
+          )
+          else 
       return (
           <div>
             <div className="Edit">
@@ -48,7 +62,7 @@ export default class EditProfile extends Component {
 
             </div>
              
-            <button className="EditButton" onClick={this.handleSwitchToEditMode}>Edit</button>
+            <button className="btn btn-primary" onClick={this.handleSwitchToEditMode}>Edit</button>
               <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
           </div>
       )
@@ -58,7 +72,7 @@ export default class EditProfile extends Component {
               You are not logged in. Please login first, before you change your profile.
           </div>
       )
-  }
+      }
 
   handleLogout() {
     const uiAction: IAction = {
