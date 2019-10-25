@@ -29,6 +29,7 @@ reducerFunctions[ActionType.update_search_results] = function (newState: IState,
 class SearchBar extends Component<{}, IState> {
  handleQuery = async () => {
    await axios.get('/lessons/search?query='+window.CS.getBMState().searchQuery).then(response => {
+     console.log(response)
      const action: ISearchResultAction = {
        type: ActionType.update_search_results,
        data: response.data

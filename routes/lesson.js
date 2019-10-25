@@ -8,7 +8,8 @@ let Lesson = require('../models/Lesson');
 //R: read all lessons
 
 lessonRoutes.get('/search', (req, res) => {
-    Lesson.find({lesson_name: req.query.query}).then(
+    let searchString = new RegExp(req.query.query.toLowerCase(), "i");
+    Lesson.find({lesson_name: searchString }).then(
         lesson => 
         res.json(lesson)
     )
@@ -16,7 +17,6 @@ lessonRoutes.get('/search', (req, res) => {
 });
 
 lessonRoutes.route('/read').get(function (req, res) {
-    console.log("got a request");
     Lesson.find(function (err, lessons) {
         if (err) {
             console.log(err);

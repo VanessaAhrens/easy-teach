@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import { ActionType, IAction } from '../framework/IAction';
 import { IWindow } from '../framework/IWindow';
-import { IState } from '../state/appState'
-import { ILessonData } from '../state/appState'
-import { reducerFunctions } from '../reducer/appReducer';
-import axios from 'axios';
-import SimpleLesson from './SimpleLesson';
-import SearchBar from './SearchBar';
-import ShowLesson from './ShowLesson';
 declare let window: IWindow;
 
 interface IProps {
@@ -20,25 +12,13 @@ export default class LessonDetail extends React.Component<IProps>  {
     constructor(props: any) {
         super(props);
     }
-    lesson = {
-        lesson_name: ''
-    }
-    componentDidMount() {
-        //const selectedLesson = window.CS.getBMState().lessons.filter(lesson => lesson._id === this.props.match.params.id)[0];
-        axios.get('/lessons/read/'+this.props.match.params.id).then(
-            response => {
-               
-                this.lesson = response.data}
-        )
-    }
     render() {
-        console.log("id",window.CS.getBMState().lessons[0])
-        console.log(window.CS.getBMState().lessons);
-        return (
+        const lessonToRender = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id);
+        return (   
             <div>
                 <p>hello</p>
-                <p>{this.lesson.lesson_name}</p>
-
+                {lessonToRender.length != 0 ? <><h1>{lessonToRender[0].lesson_name}</h1>
+                <p>{lessonToRender[0].lesson_location}</p></> : <h1>Please return to search and try again</h1>}
             </div>
         )
     }
