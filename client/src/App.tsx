@@ -68,7 +68,7 @@ export default class App extends React.PureComponent<IProps, IState > {
           <Route path="/createlesson" component={CreateLesson} />
           <Route path="/searchResult" component={SearchResult} />
           <Route path="/LessonDetail/read/:id" render={(props)=><LessonDetail {...props}/>} />
-          <Route path="/editprofile" component={EditProfile} />
+          <Route path="/editprofile" component={EditProfile} edit={false}/>
           <Route path="/" component={SearchBar} />
           
           
