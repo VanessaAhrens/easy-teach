@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, ChangeEvent } from 'react'
 import './EditProfile.css';
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
-import {ILessonData,IState} from '../state/appState'
+import {ILessonData,IState, IUser} from '../state/appState'
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import history from '../framework/history';
@@ -15,40 +15,44 @@ interface IProps {
 
 interface IJSXState {
   edit_mode: boolean;
+  user: IUser;
 }
 
 export default class EditProfile extends React.PureComponent<IProps, IJSXState> {
 
   constructor(props: IProps) {
       super(props);
+
       this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this)
       this.handleLogout = this.handleLogout.bind(this)
-
-  this.state = {
-    edit_mode: props.edit,
-}}
+     // this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      edit_mode: props.edit,
+      user: window.CS.getBMState().user
+    }
+  }
 
   render() {
-    (window.CS.getUIState().loggedIn) = true
+
       if (window.CS.getUIState().loggedIn) 
 
       if (this.state.edit_mode == true)
           return (
             <div>
               <div className="RealEdit"><div>First Name: </div> 
-              <input></input>
+              <input name= "handleFirstName" onChange={this.handleChange} value= {this.state.user.firstname}></input>
 
             </div>
             <div className="RealEdit"><div>Last Name: </div> 
-              <input></input>
+              <input name= "handleLastName" onChange={this.handleChange} value= {this.state.user.lastname}></input>
 
             </div>
             <div className="RealEdit"><div>Username: </div> 
-              <input></input>
+              <input name= "handleUserName" onChange={this.handleChange} value= {this.state.user.username}></input>
 
             </div>
             <div className="RealEdit"><div>Password</div> 
-              <input></input>
+              <input name= "handlePassword" onChange={this.handleChange} value= {this.state.user.password}></input>
 
             </div>
             </div>
@@ -108,81 +112,44 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
   handleSwitchToEditMode() {
     this.setState({ edit_mode: true });
 }
+
+handleChange = (event: ChangeEvent) => {
+  const target = event.target as HTMLInputElement
+  const name = target.name as string;
+  let newUser = this.state.user;
+  //newUser[name] = target.value;
+  this.setState({
+      user: newUser
+  });
+}
+handleSave = () => {
+        const uiAction: IAction = {
+          type: ActionType.server_called
+        }
+        window.CS.clientAction(uiAction);
+        const newLesson: ILessonData = {
+          _id: mongoose.Types.ObjectId().toString(),    //retrieves the ID from Mongoose
+          ...this.state.lesson                          // and the rest of the state
+        }
+        const action: ILessonAction = {
+            type: ActionType.create_lesson,
+            lesson: newLesson
+          }
+          
+        axios.post('/lessons/add', newLesson)
+        
+        .then(res => {
+          window.CS.clientAction(action);
+          console.log(res.data._id, res.data)
+        });
+        history.push('/')
+        
+        
+      }
+
 }
 
 //
 
 
 
-/*
-
-export default class SimpleLesson extends React.PureComponent<IProps, IJSXState> {
-
-  constructor(props: IProps) {
-      super(props);
-
-      this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this);
-      this.handleNameChange = this.handleNameChange.bind(this);
-      this.handleDurationChange = this.handleDurationChange.bind(this);
-      this.handleLocationChange = this.handleLocationChange.bind(this);
-      this.handlePriceChange = this.handlePriceChange.bind(this);
-      this.handleEquipChange = this.handleEquipChange.bind(this);
-      this.handleLanguageChange = this.handleLanguageChange.bind(this);
-      this.handleAmountPeopleChange = this.handleAmountPeopleChange.bind(this);
-      this.handleEmailTeacherChange = this.handleEmailTeacherChange.bind(this);
-      this.handleAboutTeacherChange = this.handleAboutTeacherChange.bind(this);
-
-      this.handleSave = this.handleSave.bind(this);
-      this.handleRerenderTest = this.handleRerenderTest.bind(this);
-      this.handleDelete = this.handleDelete.bind(this);
-
-      this.state = {
-          edit_mode: props.edit,
-      }
-  }
-
-  render() {
-
-      //if the component is in edit mode, it will render different than if it just shows the data
-      if (this.state.edit_mode)
-          return (
-              <tr>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_name} onChange={this.handleNameChange} /></td>
-                  <td><input type="text" name="duration" value={this.props.lesson.lesson_duration} onChange={this.handleDurationChange} /></td>
-                  <td><input type="text" name="location" value={this.props.lesson.lesson_location} onChange={this.handleLocationChange} /></td>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_price} onChange={this.handlePriceChange} /></td>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_equip} onChange={this.handleEquipChange} /></td>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_language} onChange={this.handleLanguageChange} /></td>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_amountPeople} onChange={this.handleAmountPeopleChange} /></td>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_eMailTeacher} onChange={this.handleEmailTeacherChange} /></td>
-                  <td><input type="text" name="name" value={this.props.lesson.lesson_aboutTeacher} onChange={this.handleAboutTeacherChange} /></td>
-
-                  <td>
-                      <button onClick={this.handleSave} id={this.props.lesson._id}>save</button>
-                      <button onClick={this.handleRerenderTest} >increase State Counter</button>
-                  </td>
-              </tr>
-          )
-      else
-          return (
-              <tr>
-                  <td>{this.props.lesson.lesson_name}</td>
-                  <td>{this.props.lesson.lesson_duration} Minuten</td>
-                  <td>{this.props.lesson.lesson_location} </td>
-                  <td>{this.props.lesson.lesson_price} €</td>
-                  <td>{this.props.lesson.lesson_equip} </td>
-                  <td>{this.props.lesson.lesson_language} </td>
-                  <td>{this.props.lesson.lesson_amountPeople} </td>
-                  <td>{this.props.lesson.lesson_eMailTeacher} </td>
-                  <td>{this.props.lesson.lesson_aboutTeacher} </td>
-
-                  <td>
-                      <button onClick={this.handleSwitchToEditMode}>edit</button>
-                      <button onClick={this.handleDelete} id={this.props.lesson._id}>sell or dispose</button>
-                      <button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>
-                  </td>
-              </tr>
-          )
-  }
-
-}*/
