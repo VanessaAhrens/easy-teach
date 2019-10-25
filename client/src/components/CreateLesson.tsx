@@ -9,6 +9,7 @@ import history from '../framework/history';
 import './CreateLesson.css';
 import mongoose from 'mongoose';
 import { string } from 'prop-types';
+import {Button} from 'react-bootstrap';
 declare let window: IWindow;
 
 
@@ -78,7 +79,7 @@ export default class CreateLesson extends React.Component<{},IJSXState> {
                     <div className= "divAroundCreate">E-Mail Adress<input className= "createLesson" id = "createEmail" type="text" name="lesson_eMailTeacher" value={this.state.lesson.lesson_eMailTeacher} onChange={this.handleChange} /></div>
                     <div className= "divAroundCreate">About the Teacher<input className= "createLesson" id = "createaboutTeacher" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} /></div>
                     
-                    <button className="saveButton" onClick={this.handleSave}>save</button>
+                    <Button className= "ButtonStyle style={{backgroundColor: '#231B53'}" onClick={this.handleSave} >save</Button>
                     
                     
                 </div>
