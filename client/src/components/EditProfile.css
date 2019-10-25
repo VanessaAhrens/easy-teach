@@ -11,3 +11,16 @@ height: 30px;
 margin-left: 100px;
 
 }
+.RealEdit {
+    display: flex;
+flex-direction: column;
+
+}
+
+input {
+
+    width: 100px;
+    height: 30px;
+    margin-left: 100px;
+    
+    }
