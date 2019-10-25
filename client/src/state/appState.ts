@@ -17,7 +17,7 @@ export interface IUI{
 }
 
 export interface ILessonData {
-    _id?: string;
+    _id?: any;
     lesson_name: string;
     lesson_duration?:number;
     lesson_location?: string;
