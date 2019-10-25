@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './EditProfile.css';
-import SimpleLesson from './SimpleLesson'
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
 import {ILessonData,IState} from '../state/appState'
@@ -24,32 +23,32 @@ reducerFunctions[ActionType.create_lesson] = function (newState: IState, action:
 
 export default class EditProfile extends Component {
   render() {
-    (window.CS.getUIState().loggedIn) = true;
+
       if (window.CS.getUIState().loggedIn)
       return (
           <div>
             <div className="Edit">
             <p>Username: {window.CS.getBMState().user.username}</p>
-          <button>Edit</button>
+
             </div>
             <div className="Edit">
             <p>First Name: {window.CS.getBMState().user.firstname}</p>
-          <button>Edit</button>
+
             </div>
             <div className="Edit">
             <p>Last Name: {window.CS.getBMState().user.lastname}</p>
-          <button>Edit</button>
+
             </div>
             <div className="Edit">
             <p>Password: ************</p>
-          <button>Edit</button>
+
             </div>
             <div className="Edit">
             <p>Picture: </p>
-          <button>Edit</button>
+
             </div>
              
-
+            <button className="EditButton" onClick={this.handleSwitchToEditMode}>Edit</button>
               <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
           </div>
       )
@@ -76,6 +75,10 @@ export default class EditProfile extends Component {
     );
     history.push('/')
   }
+
+  handleSwitchToEditMode() {
+    this.setState({ edit_mode: true });
+}
 }
 
 //
@@ -152,7 +155,5 @@ export default class SimpleLesson extends React.PureComponent<IProps, IJSXState>
               </tr>
           )
   }
-  handleSwitchToEditMode() {
-      this.setState({ edit_mode: true });
-  }
+
 }*/
