@@ -62,8 +62,8 @@ class SearchBar extends Component<{}, IState> {
            placeholder="Search For Lesson" />
        </div>
        <div className="control">
-         <a className="btn btn-primary" onClick={this.handleQuery}>
-           Search
+         <a className="btn btn-primary"  onClick={this.handleQuery}>
+            Search
        </a>
 
        </div>
