@@ -29,13 +29,28 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
 }}
 
   render() {
-
+    (window.CS.getUIState().loggedIn) = true
       if (window.CS.getUIState().loggedIn) 
 
       if (this.state.edit_mode == true)
           return (
             <div>
+              <div className="RealEdit"><div>First Name: </div> 
+              <input></input>
 
+            </div>
+            <div className="RealEdit"><div>Last Name: </div> 
+              <input></input>
+
+            </div>
+            <div className="RealEdit"><div>Username: </div> 
+              <input></input>
+
+            </div>
+            <div className="RealEdit"><div>Password</div> 
+              <input></input>
+
+            </div>
             </div>
           )
           else 
