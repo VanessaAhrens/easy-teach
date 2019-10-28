@@ -6,11 +6,11 @@ import { handleLogout } from './Login';
 //import Nav.Link from 'react-bootstrap/Nav.Link';
 
 declare let window: IWindow;
-
+// Funktion logoutDependantNavbar: 
 const nav = (props: any) => {
-    const logoutDependantNavbar = window.CS.getUIState().loggedIn 
+    const logoutDependantNavbar = window.CS.getUIState().loggedIn // wenn eingeloggt, <> zeige mehrere children </>, : wenn nicht eingeloggt <> zeige diese children </>
     ?
-    <>
+    <>                                                                  
     <Link className="nav-item nav-link" onClick={handleLogout} to="/home">Logout</Link>
     <Link className="nav-item nav-link" to="/lessons">Lessons </Link>
     <Link className="nav-item nav-link" to="/editprofile">Profile </Link>
@@ -37,3 +37,5 @@ const nav = (props: any) => {
     )
 }
 export default nav;
+
+// <Link className="nav-item nav-link" to="/home">Home </Link>  >> zeige das in der Navbar an und returne die Funktion {logoutDependantNavbar}
