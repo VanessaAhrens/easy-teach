@@ -1,5 +1,4 @@
 import React, { Component, ChangeEvent } from 'react'
-import './EditProfile.css';
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
 import { ILessonData, IState, IUser } from '../state/appState'

@@ -39,7 +39,7 @@ export default class Login extends Component {
             return (
                 <div>
                     <p>You are logged in as {window.CS.getBMState().user.username}</p>
-                    <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
+                    <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
                 </div>
             )
         else
@@ -124,20 +124,17 @@ export default class Login extends Component {
                 console.log(window.CS.getUIState().loggedIn)
             });
     }
-
-    handleLogout() {
-        const uiAction: IAction = {
-            type: ActionType.server_called
-        }
-        window.CS.clientAction(uiAction);
-        axios.get('/auth/logout').then(res => {
-            const loggedoutAction: IAction = {
-                type: ActionType.user_logged_out
-            }
-            window.CS.clientAction(loggedoutAction);
-        }
-        );
+}
+export const handleLogout = () => {
+    const uiAction: IAction = {
+        type: ActionType.server_called
     }
-
-
+    window.CS.clientAction(uiAction);
+    axios.get('/auth/logout').then(res => {
+        const loggedoutAction: IAction = {
+            type: ActionType.user_logged_out
+        }
+        window.CS.clientAction(loggedoutAction);
+    }
+    );
 }
