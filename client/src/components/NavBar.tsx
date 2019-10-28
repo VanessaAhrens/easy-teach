@@ -14,6 +14,7 @@ const nav = (props: any) => {
     <Link className="nav-item nav-link" onClick={handleLogout} to="/home">Logout</Link>
     <Link className="nav-item nav-link" to="/lessons">Lessons </Link>
     <Link className="nav-item nav-link" to="/editprofile">Profile </Link>
+    <Link className="nav-item nav-link" to="/createlesson">Create Lesson </Link>
     </>
     :
     <>
