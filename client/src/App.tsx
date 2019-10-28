@@ -12,7 +12,6 @@ import { IAction, ActionType } from './framework/IAction';
 import { ILessonData, IState } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import EditProfile from './components/EditProfile';
 
 import { IWindow } from './framework/IWindow'
@@ -34,7 +33,7 @@ reducerFunctions[ActionType.add_lessons_from_server] = function (newState: IStat
   newState.BM.lessons = action.lessons;
   return newState;
 }
-export default class App extends React.PureComponent<IProps, IState > {
+export default class App extends React.PureComponent<IProps, IState> {
   componentDidMount() {
     const uiAction: IAction = {
       type: ActionType.server_called
@@ -56,24 +55,24 @@ export default class App extends React.PureComponent<IProps, IState > {
       console.log(response.data);
     });
   }
-//component={LessonDetail}
+  //component={LessonDetail}
   render() {
     window.CS.log("App --> render()")
     return (
-      <div className="container-fluid">
+      <div>
         <NavBar />
-        <Switch>
-          <Route path="/showlessons" component={ShowLessons} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/createlesson" component={CreateLesson} />
-          <Route path="/searchResult" component={SearchResult} />
-          <Route path="/LessonDetail/read/:id" render={(props)=><LessonDetail {...props}/>} />
-          <Route path="/editprofile" component={EditProfile} edit={false}/>
-          <Route path="/" component={SearchBar} />
-          
-          
-        </Switch>
+        <div>
+          <Switch >
+            <Route path="/showlessons" component={ShowLessons} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/createlesson" component={CreateLesson} />
+            <Route path="/searchResult" component={SearchResult} />
+            <Route path="/LessonDetail/read/:id" render={(props) => <LessonDetail {...props} />} />
+            <Route path="/editprofile" component={EditProfile} edit={false} />
+            <Route path="/" component={SearchBar} />
+          </Switch>
+        </div>
       </div>
     );
   }

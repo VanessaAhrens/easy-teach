@@ -48,8 +48,8 @@ export const initial:IState = {
     UI: {
         counter: 0,
         loggedIn: false,
-       waitingForResponse: false,
-       Login: {errorMessage:""}
+        waitingForResponse: false,
+        Login: {errorMessage:""}
    },
     BM: {
        user:{

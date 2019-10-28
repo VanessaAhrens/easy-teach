@@ -20,7 +20,7 @@ reducerFunctions[ActionType.update_user] = function (newState: IState, updateAct
 reducerFunctions[ActionType.user_created] = function (newState: IState, updateAction: IUserAction) {
     console.log(updateAction.user);
     newState.UI.waitingForResponse = false;
-    newState.UI.loggedIn = true ;
+    newState.UI.loggedIn = true;
     return newState
 }
 export default class Register extends Component {
@@ -28,19 +28,32 @@ export default class Register extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="firstname">First name:</label>
-                    <input type="text" placeholder="firstname" onChange={this.handleFirstnameChange} value={window.CS.getBMState().user.firstname} />
-                    <br />
-                    <label htmlFor="lastname">Last name:</label>
-                    <input type="text" placeholder="lastname" onChange={this.handleLastnameChange} value={window.CS.getBMState().user.lastname} />
-                    <br />
-                    <label htmlFor="username">Username:</label>
-                    <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
-                    <br />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
-                    <br />
-                    <input type="submit" value="Register as new User" />
+
+                    <div className="row" style={{ marginTop: '50px' }} >
+                        <div className="col-md-4"></div>
+                        <div className="col-md-4">
+                            <div className="col">
+                                <label htmlFor="firstname">First name</label>
+                                <input type="text" onChange={this.handleFirstnameChange} value={window.CS.getBMState().user.firstname} className="form-control" placeholder="First name" />
+                            </div>
+                            <div className="col">
+                                <label htmlFor="lastname">Last name:</label>
+                                <input type="text" onChange={this.handleLastnameChange} value={window.CS.getBMState().user.lastname} className="form-control" placeholder="Last name" />
+                            </div>
+                            <div className="col">
+                                <label htmlFor="username">Username</label>
+                                <input type="text" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} className="form-control" placeholder="Username" />
+                            </div>
+                            <div className="col">
+                                <label htmlFor="password">Password</label>
+                                <input type="text" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} className="form-control" placeholder="Password" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row" style={{ marginTop: '50px' }}>
+                        <div className="col-md-5"></div>
+                        <input className="btn btn-primary" type="submit" value="Register as new User" />
+                    </div>
                 </form>
             </div>
         )

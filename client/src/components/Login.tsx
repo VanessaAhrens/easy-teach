@@ -29,35 +29,53 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = {lastname:"",firstname:"",username:"",password:""};
+    newState.BM.user = { lastname: "", firstname: "", username: "", password: "" };
     return newState
 }
 
 export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
-        return (
-            <div>
-                <p>You are logged in as {window.CS.getBMState().user.username}</p>
-                <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
-            </div>
-        )
-    else
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username:</label>
-                    <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
-                    <br />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
-                    <br />
-                    <input className="btn btn-primary" type="submit" value="Login" />
-                </form>
-                <p>{window.CS.getUIState().Login.errorMessage}</p>
+            return (
+                <div>
+                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                    <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
+                </div>
+            )
+        else
+            return (
+                <div className="row" style={{ marginTop: '50px' }} >
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">Username</label>
+                                <input type="username" className="form-control" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
 
-            </div>
-        )
+                            <div className="form-group">
+                                <label htmlFor="exampleInputPassword1">Password</label>
+                                <input type="password" className="form-control" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} id="exampleInputPassword1" placeholder="Password" />
+                            </div>
+
+                            <div className="form-group form-check">
+                                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                            </div>
+
+                            <div className="row" style={{ marginTop: '50px' }}>
+                                <div className="col-md-5"></div>
+                                <input className="btn btn-primary" type="submit" value="Login" />
+                            </div>
+                        </form>
+                        <p>{window.CS.getUIState().Login.errorMessage}</p>
+                    </div>
+                    <div className="col-md-4"></div>
+
+
+                </div>
+            )
     }
 
     handleUsernameChange(event: any) {
