@@ -19,16 +19,10 @@ export interface ISearchResultAction extends IAction {
 }
 
 class SearchResult extends Component<{}, IState> {
-/*
-  handleChangeHandler = (e: any) => {
-    const action: ISearchAction = {
-      type: ActionType.update_search,
-      search: e.target.value
-    }
-    
-    history.push('/LessonDetail/read/'+e.target.id);
-    window.CS.clientAction(action)
-  }   onClick={this.handleChangeHandler}*/
+  handleQuery = () => {
+    history.push('/');
+}
+
   render() {
     return (
       <table>
@@ -42,6 +36,10 @@ class SearchResult extends Component<{}, IState> {
                 <button id={item._id}><Link to={'/LessonDetail/read/'+item._id}>Show</Link></button>
               </td>
             </tr>) : null}
+            <div className=" col-md-4 col-xs-4" >
+                        <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
+                    </div>
+
         </tbody>
       </table>
 
