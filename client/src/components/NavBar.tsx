@@ -1,18 +1,41 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
-import {Navbar, Nav} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
+import { IWindow } from '../framework/IWindow'
+import { handleLogout } from './Login';
 //import Nav.Link from 'react-bootstrap/Nav.Link';
 
+declare let window: IWindow;
+// Funktion logoutDependantNavbar: 
 const nav = (props: any) => {
+    const logoutDependantNavbar = window.CS.getUIState().loggedIn // wenn eingeloggt, <> zeige mehrere children </>, : wenn nicht eingeloggt <> zeige diese children </>
+    ?
+    <>                                                                  
+    <Link className="nav-item nav-link" onClick={handleLogout} to="/home">Logout</Link>
+    <Link className="nav-item nav-link" to="/lessons">Lessons </Link>
+    <Link className="nav-item nav-link" to="/editprofile">Profile </Link>
+    </>
+    :
+    <>
+    <Link className="nav-item nav-link" to="/login">Login </Link>
+    <Link className="nav-item nav-link" to="/register">Register </Link>
+    </>
     return (
-        <Navbar className="justify-content-between" style={{backgroundColor: '#E3E0DB'}} >
-            <Navbar.Brand style={{color: '#2FBBA9'}} href="#home">easyTeach</Navbar.Brand>
-            <Nav.Link style={{color: '#231B53'}} href="/home">Home</Nav.Link>
-            <Nav.Link style={{color: '#231B53'}} href="/login">Login</Nav.Link>
-            <Nav.Link style={{color: '#231B53'}} href="/register">Register</Nav.Link>
-            <Nav.Link style={{color: '#231B53'}} href="/createlesson">Lessons</Nav.Link>
-            <Nav.Link  style={{color: '#231B53'}} href="/editprofile">Edit Profile</Nav.Link>
-        </Navbar>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="/home">easyTeach</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="navbar-nav">
+                    <Link className="nav-item nav-link" to="/home">Home </Link> 
+                    {logoutDependantNavbar}
+                </div>
+            </div>
+        </nav>
+
     )
 }
 export default nav;
+
+// <Link className="nav-item nav-link" to="/home">Home </Link>  >> zeige das in der Navbar an und returne die Funktion {logoutDependantNavbar}
