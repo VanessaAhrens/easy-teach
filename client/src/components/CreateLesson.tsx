@@ -68,21 +68,7 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
     render() {
         { console.log(this.state.lesson) }
         return (
-            /*            <div className= "divAroundAllCreate">
-                            <div className= "divAroundCreate">Lesson Name<input className= "createLesson" id = "createName" type="text" name="lesson_name" value={this.state.lesson.lesson_name} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">Duration<input className= "createLesson" id = "createDuration" type="text" name="lesson_duration" value={this.state.lesson.lesson_duration} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">Location<input className= "createLesson" id = "createLocation" type="text" name="lesson_location" value={this.state.lesson.lesson_location} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">Price<input className= "createLesson" id = "createPrice" type="text" name="lesson_price" value={this.state.lesson.lesson_price} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">Needed Equipment<input className= "createLesson" id = "createEquip" type="text" name="lesson_equip" value={this.state.lesson.lesson_equip} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">Teaching Language<input className= "createLesson" id = "createLanguage" type="text" name="lesson_language" value={this.state.lesson.lesson_language} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">Maximum amount of People per Course<input className= "createLesson" id = "createAmount" type="text" name="lesson_amountPeople" value={this.state.lesson.lesson_amountPeople} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">E-Mail Adress<input className= "createLesson" id = "createEmail" type="text" name="lesson_eMailTeacher" value={this.state.lesson.lesson_eMailTeacher} onChange={this.handleChange} /></div>
-                            <div className= "divAroundCreate">About the Teacher<input className= "createLesson" id = "createaboutTeacher" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} /></div>
-                            
-                            <Button className= "ButtonStyle style={{backgroundColor: '#231B53'}" onClick={this.handleSave} >save</Button>
-                            
-                            
-                        </div>*/
+        
 
             <form>
                 <div className="form-row" style={{ marginTop: '50px' }}>
