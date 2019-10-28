@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
-
-
-
+import { Link } from 'react-router-dom';
+import {Navbar, Nav} from 'react-bootstrap';
+//import Nav.Link from 'react-bootstrap/Nav.Link';
 
 const nav = (props: any) => {
     return (
@@ -25,6 +24,4 @@ const nav = (props: any) => {
 
     )
 }
-
-
 export default nav;
