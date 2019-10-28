@@ -84,6 +84,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
   }
   render() {
     //|| true  weg nach fake
+    console.log(window.CS.getUIState().loggedIn)
     if (window.CS.getUIState().loggedIn) {
       //|| !=true  weg nach fake und == true
       if (this.state.edit_mode == true) return this.renderEditMode();

@@ -121,6 +121,7 @@ export default class Login extends Component {
                     window.CS.clientAction(loggedinAction);
                     history.push("/");
                 }
+                console.log(window.CS.getUIState().loggedIn)
             });
     }
 
