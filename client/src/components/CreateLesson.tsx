@@ -64,8 +64,8 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
             lesson_aboutTeacher: ''
         }
     }
-
     render() {
+        
         { console.log(this.state.lesson) }
         return (
         
@@ -129,6 +129,7 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
                     <div className="col-md-5"></div>
                     <Button type="submit" className="btn btn-primary" onClick={this.handleSave} >Save Lesson</Button>
                 </div>
+                <div id = "successful" style={{color: 'lightgreen', textAlign: 'center', margin: '30px'}}></div>
             </form>
         )
 
@@ -150,8 +151,7 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
     
     */
 
-
-    handleSave = () => {
+    handleSave = (event: any) => {
         const uiAction: IAction = {
             type: ActionType.server_called
         }
@@ -171,7 +171,10 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
                 window.CS.clientAction(action);
                 console.log(res.data._id, res.data)
             });
-        history.push('/')
+        let success = document.getElementById("successful")!
+        success.innerText = "The creation of the lesson was successful and your students can now reach you. Happy teaching!";
+        event.preventDefault();   
+
 
 
     }
