@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from 'react'
-
+import { Button } from 'react-bootstrap';
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
 import { ILessonData, IState, IUser } from '../state/appState'
@@ -19,6 +19,9 @@ interface IJSXState {
   lastname: string;
   firstname: string;
   password: string;
+}
+interface IUserAction extends IAction {
+  user: IUser
 }
 
 export default class EditProfile extends React.PureComponent<IProps, IJSXState> {
@@ -46,7 +49,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
   renderEditMode() {
     return (
       <div>
-
+        <div>
         <form>
           <div className="row" style={{ marginTop: '50px' }} >
             <div className="col-md-2"></div>
@@ -65,7 +68,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
                 <label htmlFor="username">Username:</label>
                 <input className="form-control" name="username" onChange={this.handleChange} value={this.state.username}></input>
               </div>
-              x
+              
               <div className="col">
                 <label htmlFor="password">Password:</label>
                 <input className="form-control" name="password" onChange={this.handleChange} value="****"></input>
@@ -79,13 +82,13 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
 
         </div>
         <div className="RealEdit"><div>Username: </div>
-          <input name="handleUserName" onChange={this.handleChange} value={this.state.user.username}></input>
+          <input name="handleUserName" onChange={this.handleChange} value={this.state.username}></input>
 
         </div>
         <div className="RealEdit"><div>Password</div>
-          <input name="handlePassword" onChange={this.handleChange} value={this.state.user.password}></input>
-
-      </div>
+          <input name="handlePassword" onChange={this.handleChange} value={this.state.password}></input>
+         </div>
+          </div>
     )
   }
   renderViewMode() {
