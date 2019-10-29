@@ -31,10 +31,11 @@ export interface ILessonData {
   }
 
 export interface IBM{
+    _id?: string;
     user:IUser;
-    lessons:ILessonData[],
-    searchQuery:string,
-    searchResult: any
+    lessons:ILessonData[];
+    searchQuery:string;
+    searchResult: any;
 }
 
 export interface IState{

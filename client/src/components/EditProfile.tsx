@@ -177,10 +177,13 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     user.username = this.state.username;
     user.lastname = this.state.lastname;
     user.firstname = this.state.firstname;
-    axios.post('/auth/signup', user)
+
+    axios.put('/auth/user/update', user )
       .then(res => {
-        const uiAction: IAction = {
-          type: ActionType.user_updated
+        console.log(res.data)
+        const uiAction: IUserAction = {
+          type: ActionType.user_updated,
+          user: res.data
         }
         history.push('/');
         window.CS.clientAction(uiAction);
