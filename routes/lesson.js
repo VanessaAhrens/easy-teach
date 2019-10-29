@@ -1,7 +1,7 @@
 const express = require('express');
 const lessonRoutes = express.Router();
 
-
+const nodemailer = require("nodemailer");
 let Lesson = require('../models/Lesson');
 
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
@@ -75,6 +75,26 @@ lessonRoutes.route('/delete/:id').post(function (req, res) {
             res.json('lesson deleted!');
     });
 });
+
+lessonRoutes.post('/email', (req, res) => {
+    console.log(req.body)
+    let { email, subject, message } = req.body;
+    let transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'easyteach1234@gmail.com',
+        pass: 'Easyteach1234!'
+      }
+    });
+    transporter.sendMail({
+      from: '"My Awesome Project :gespenst:" <easyteach1234@gmail.com>',
+      to: email,
+      subject: subject,
+      text: message
+    })
+    .then(info => console.log('message', {email, subject, message, info}))
+    .catch(error => console.log(error));
+})
 
 
 module.exports = lessonRoutes;
