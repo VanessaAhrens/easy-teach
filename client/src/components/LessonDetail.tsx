@@ -38,7 +38,7 @@ export default class LessonDetail extends React.Component<IProps>  {
                     <p>Teaching Language: {lessonToRender[0].lesson_language}</p>
                     <p>Number of participants: {lessonToRender[0].lesson_amountPeople}</p>
                     <p>About me: {lessonToRender[0].lesson_abaoutTeacher}</p>
-                    <h5>Please contact: {lessonToRender[0].lesson_eMailTeacher}</h5>
+                    <h5><a href="mailto:yxcyxc@yxcc.de">Please click me</a>Please contact: {lessonToRender[0].lesson_eMailTeacher}</h5>
                     <div className=" col-md-4 col-xs-4" >
                         <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
                     </div>
