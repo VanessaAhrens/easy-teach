@@ -8,6 +8,33 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
+////////////////////////////
+router.post("/updateuser", (req, res) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const username = req.body.username;
+  const userPassword = req.body.password;
+
+
+  User.findOne({ username }, "username", (err, user) => {
+    
+    const salt     = bcrypt.genSaltSync(bcryptSalt);
+    const password = bcrypt.hashSync(userPassword, salt);
+
+    const userPassworEncrypted = {username, password, firstname, lastname};
+    console.log("User will be created:"+userPassworEncrypted);
+
+    User
+      .update(userPassworEncrypted)
+      .then((user) => {
+        res.status(200).json(user);
+      })
+      .catch(err => console.log(err));
+  });
+});
+
+
+////////////////////////////
 
 
 router.post("/signup", (req, res) => {

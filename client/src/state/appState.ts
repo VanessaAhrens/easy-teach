@@ -27,7 +27,7 @@ export interface ILessonData {
     lesson_amountPeople?: string;
     lesson_eMailTeacher?: string;
     lesson_aboutTeacher?: string;
-
+    
   }
 
 export interface IBM{
