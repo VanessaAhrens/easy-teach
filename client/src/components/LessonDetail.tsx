@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { IWindow } from '../framework/IWindow';
 
 import { ActionType, IAction } from '../framework/IAction';
-import { IState } from '../state/appState'
 import axios from 'axios';
 import history from '../framework/history';
 
@@ -19,12 +18,34 @@ interface IProps {
     match: any
 }
 
-export default class LessonDetail extends React.Component<IProps>  {
+interface IState {
+    email: string;
+    subject: string;
+    message: string;
+}
+
+export default class LessonDetail extends React.Component<IProps, IState>  {
     constructor(props: any) {
-        super(props);
+        super(props)
+        let lesson = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id)
+        this.state = {
+            email: lesson[0] ? lesson[0].lesson_eMailTeacher : "",
+            subject: lesson[0] ? `${lesson[0].lesson_name} in ${lesson[0].lesson_location}` : "",
+            message: "Hi, I would like to attend your lesson"
+        }
     }
+    
     handleQuery = () => {
         history.push('/searchresult');
+    }
+    emailHandler = (e: any) => {
+        e.preventDefault();
+        axios.post('/lessons/email', this.state)
+    }
+    changeHandler = (e:any) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        } as IState)
     }
     render() {
         const lessonToRender = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id);
@@ -38,7 +59,12 @@ export default class LessonDetail extends React.Component<IProps>  {
                     <p>Teaching Language: {lessonToRender[0].lesson_language}</p>
                     <p>Number of participants: {lessonToRender[0].lesson_amountPeople}</p>
                     <p>About me: {lessonToRender[0].lesson_abaoutTeacher}</p>
-                    <h5>Please contact:<a href="mailto:yxcyxc@yxcc.de">{lessonToRender[0].lesson_eMailTeacher}</a> </h5>
+                    <p>Send email to: {lessonToRender[0].lesson_eMailTeacher}</p>
+                    <form onSubmit={(e) => this.emailHandler(e)}>
+                        <input type="text" name="subject" value = {this.state.subject} onChange={this.changeHandler}/>
+                        <textarea name="message" value = {this.state.message} onChange={this.changeHandler}/>
+                        <button type="submit">Send</button>
+                    </form>
                     <div className=" col-md-4 col-xs-4" >
                         <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
                     </div>
