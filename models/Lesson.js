@@ -34,7 +34,15 @@ let Lesson = new Schema({
     },
     lesson_aboutTeacher: {
         type: String
+    },
+    lesson_pictureURL: {
+        type: String
+    },
+    lesson_rating: {
+        type: Number
     }
+
+    
 
 
 });
