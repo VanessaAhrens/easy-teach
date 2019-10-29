@@ -27,14 +27,15 @@ export interface ILessonData {
     lesson_amountPeople?: string;
     lesson_eMailTeacher?: string;
     lesson_aboutTeacher?: string;
-
+    
   }
 
 export interface IBM{
+    _id?: string;
     user:IUser;
-    lessons:ILessonData[],
-    searchQuery:string,
-    searchResult: any
+    lessons:ILessonData[];
+    searchQuery:string;
+    searchResult: any;
 }
 
 export interface IState{

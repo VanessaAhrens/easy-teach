@@ -6,6 +6,7 @@ import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import history from '../framework/history';
 import { IWindow } from '../framework/IWindow'
+import { Button } from 'react-bootstrap';
 
 declare let window: IWindow;
 interface IProps {
@@ -14,41 +15,81 @@ interface IProps {
 
 interface IJSXState {
   edit_mode: boolean;
-  user: IUser;
+  username: string;
+  lastname: string;
+  firstname: string;
+  password: string;
+}
+
+interface IUserAction extends IAction {
+  user: IUser
+}
+
+reducerFunctions[ActionType.user_updated] = function (newState: IState, updateAction: IUserAction) {
+  console.log(updateAction.user);
+  newState.BM.user = updateAction.user;
+  return newState
 }
 
 export default class EditProfile extends React.PureComponent<IProps, IJSXState> {
 
   constructor(props: IProps) {
     super(props);
-
+    this.state = {
+      edit_mode: false,
+      username: '',
+      firstname: "0",
+      lastname: '',
+      password: "0",
+    }
     this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       edit_mode: props.edit,
-      user: window.CS.getBMState().user
+      username: window.CS.getBMState().user.username,
+      password: window.CS.getBMState().user.password,
+      lastname: window.CS.getBMState().user.lastname,
+      firstname: window.CS.getBMState().user.firstname,
     }
   }
   renderEditMode() {
     return (
       <div>
-        <div className="RealEdit"><div>First Name: </div>
-          <input name="handleFirstName" onChange={this.handleChange} value={this.state.user.firstname}></input>
+        <form>
+          <div className="row" style={{ marginTop: '50px' }} >
+            <div className="col-md-2"></div>
+            <div className="col-md-3">
+              <div className="col">
+                <label htmlFor="firstName">First Name:</label>
+                <input className="form-control" name="firstname" onChange={this.handleChange} value={this.state.firstname}></input>
+              </div>
 
-        </div>
-        <div className="RealEdit"><div>Last Name: </div>
-          <input name="handleLastName" onChange={this.handleChange} value={this.state.user.lastname}></input>
+              <div className="col">
+                <label htmlFor="lastName">Last Name:</label>
+                <input className="form-control" name="lastname" onChange={this.handleChange} value={this.state.lastname}></input>
+              </div>
 
-        </div>
-        <div className="RealEdit"><div>Username: </div>
-          <input name="handleUserName" onChange={this.handleChange} value={this.state.user.username}></input>
+              <div className="col">
+                <label htmlFor="username">Username:</label>
+                <input className="form-control" name="username" onChange={this.handleChange} value={this.state.username}></input>
+              </div>
+              x
+              <div className="col">
+                <label htmlFor="password">Password:</label>
+                <input className="form-control" name="password" onChange={this.handleChange} value="****"></input>
+              </div>
 
-        </div>
-        <div className="RealEdit"><div>Password</div>
-          <input name="handlePassword" onChange={this.handleChange} value={this.state.user.password}></input>
+              <Button type="submit" onClick={this.saveProfile} >Save</Button>
+            </div>
 
-        </div>
+          </div>
+        </form>
+
+
+
+
+
       </div>
     )
   }
@@ -119,19 +160,57 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     this.setState({ edit_mode: true });
   }
 
-  handleChange = (event: ChangeEvent) => {
-    const target = event.target as HTMLInputElement
-    const name = target.name as string;
-    let newUser = this.state.user;
-    //newUser[name] = target.value;
+  handleChange = (event: any) => {
     this.setState({
-      user: newUser
-    });
+      [event.target.name]: event.target.value
+    } as IJSXState);
   }
 
+
+  saveProfile = (event: any) => {
+    event.preventDefault();
+    const aiAction: IAction = {
+      type: ActionType.server_called
+    }
+    window.CS.clientAction(aiAction);
+    let user = JSON.parse(JSON.stringify(window.CS.getBMState().user))
+    user.username = this.state.username;
+    user.lastname = this.state.lastname;
+    user.firstname = this.state.firstname;
+
+    axios.put('/auth/user/update', user )
+      .then(res => {
+        console.log(res.data)
+        const uiAction: IUserAction = {
+          type: ActionType.user_updated,
+          user: res.data
+        }
+        history.push('/');
+        window.CS.clientAction(uiAction);
+
+        console.log(res.data)
+      });
+  }
 }
 
 //
+/*
+handleSubmit(event: any) {
+        event.preventDefault();
+        const uiAction: IAction = {
+            type: ActionType.server_called
+        }
+        window.CS.clientAction(uiAction);
+        axios.post('/auth/signup', window.CS.getBMState().user)
+            .then(res => {
+                const uiAction: IAction = {
+                    type: ActionType.user_created
+                }
+                history.push('/');
+                window.CS.clientAction(uiAction);
 
+                console.log(res.data)
+            });
+    }*/
 
 
