@@ -49,6 +49,8 @@ export default class Register extends Component {
                                 <input type="text" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} className="form-control" placeholder="Password" />
                             </div>
                         </div>
+                        <div className="col-md-4"></div>
+
                     </div>
                     <div className="row" style={{ marginTop: '50px' }}>
                         <div className="col-md-5"></div>

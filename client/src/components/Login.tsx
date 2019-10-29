@@ -65,7 +65,7 @@ export default class Login extends Component {
                             </div>
 
                             <div className="row" style={{ marginTop: '50px' }}>
-                                <div className="col-md-5"></div>
+                                <div className="col-md-4"></div>
                                 <input className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
