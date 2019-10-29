@@ -6,6 +6,8 @@ import { reducerFunctions } from '../reducer/appReducer';
 import axios from 'axios';
 import SimpleLesson from './SimpleLesson';
 import history from '../framework/history';
+import { Link } from 'react-router-dom';
+import German from './German.png'
 
 declare const window: IWindow;
 export interface ISearchAction extends IAction {
@@ -47,6 +49,7 @@ class SearchBar extends Component<{}, IState> {
   }
   render() {
     return (
+      <>
       <div className="row" style={{ marginTop: '10%' }}>
         <div className="col-md-4"></div>
         <div className="col-md-4 ">
@@ -58,6 +61,33 @@ class SearchBar extends Component<{}, IState> {
        </button>
         </div>
       </div>
+      
+<div className="container marketing" style={{ marginTop: '20%' }}>
+  <div className="row">
+    <div className="col-lg-4">
+      <img className="rounded-circle" src={'./German.png'}  alt="teacher-pic"/>
+      <h3>Stefan Arndt</h3>
+      <p>"German as foreign language adjusted to your level!"</p>
+      <p><Link className = "btn btn-primary" to = "/login" role="button" >View details</Link></p>
+    </div>
+    <div className="col-lg-4">
+      <img className="rounded-circle" />
+      <h3>Peter Hendricks</h3>
+      <p>"Mathematics for your base studies - until you pass your tests."</p>
+      <p><Link className = "btn btn-primary" to = "/login" role="button" >View details</Link></p>
+    </div>
+    <div className="col-lg-4">
+      <img className="rounded-circle" />
+      <h3>Claudia Moy</h3>
+      <p>"Music Lessons for students and children from a professional Oboist."</p>
+      <p><Link className = "btn btn-primary" to = "/login" role="button" >View details</Link></p>
+      
+    </div>
+  </div>
+  
+  
+</div>
+</>
     );
   }
 }
