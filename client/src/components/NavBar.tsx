@@ -12,7 +12,7 @@ const nav = (props: any) => {
         ?
         <>
 
-            <Link className="nav-item nav-link" to="/lessons">MyLessons </Link>
+            <Link className="nav-item nav-link" to="/createlesson">MyLessons </Link>
             <Link className="nav-item nav-link" to="/editprofile">Profile </Link>
         </>
         :
@@ -38,7 +38,7 @@ const nav = (props: any) => {
                             <small>Hello, {window.CS.getBMState().user.firstname}<br/>
                             <Link className="nav-item nav-link pt-0 pb-0 " onClick={handleLogout} to="/home">Logout</Link></small>
                             :
-                            <text></text>
+                            null
 
                 }
                 </div>

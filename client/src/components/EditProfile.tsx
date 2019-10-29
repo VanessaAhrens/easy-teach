@@ -33,23 +33,36 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
   renderEditMode() {
     return (
       <div>
-        <div className="RealEdit"><div>First Name: </div>
-          <input name="handleFirstName" onChange={this.handleChange} value={this.state.user.firstname}></input>
+        <form>
+          <div className="row" style={{ marginTop: '50px' }} >
+            <div className="col-md-2"></div>
+            <div className="col-md-3">
+              <div className="col">
+                <label htmlFor="firstName">First Name:</label>
+                <input className="form-control" name="handleFirstName" onChange={this.handleChange} value={this.state.user.firstname}></input>
+              </div>
 
-        </div>
-        <div className="RealEdit"><div>Last Name: </div>
-          <input name="handleLastName" onChange={this.handleChange} value={this.state.user.lastname}></input>
+              <div className="col">
+                <label htmlFor="lastName">Last Name:</label>
+                <input className="form-control" name="handleLastName" onChange={this.handleChange} value={this.state.user.lastname}></input>
+              </div>
 
-        </div>
-        <div className="RealEdit"><div>Username: </div>
-          <input name="handleUserName" onChange={this.handleChange} value={this.state.user.username}></input>
+              <div className="col">
+                <label htmlFor="username">Username:</label>
+                <input className="form-control" name="handleUserName" onChange={this.handleChange} value={this.state.user.username}></input>
+              </div>
 
-        </div>
-        <div className="RealEdit"><div>Password</div>
-          <input name="handlePassword" onChange={this.handleChange} value={this.state.user.password}></input>
+              <div className="col">
+                <label htmlFor="password">Password:</label>
+                <input className="form-control" name="handlePassword" onChange={this.handleChange} value={this.state.user.password}></input>
+              </div>
+            </div>
 
-        </div>
+          </div>
+        </form>
       </div>
+
+
     )
   }
   renderViewMode() {
