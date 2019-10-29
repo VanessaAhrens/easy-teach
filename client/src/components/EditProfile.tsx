@@ -15,7 +15,10 @@ interface IProps {
 
 interface IJSXState {
   edit_mode: boolean;
-  user: IUser;
+  username: string;
+  lastname: string;
+  firstname: string;
+  password: string;
 }
 
 interface IUserAction extends IAction {
@@ -32,13 +35,22 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
 
   constructor(props: IProps) {
     super(props);
-
+    this.state = {
+      edit_mode: false,
+      username: '',
+      firstname: "0",
+      lastname: '',
+      password: "0",
+    }
     this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       edit_mode: props.edit,
-      user: window.CS.getBMState().user
+      username: window.CS.getBMState().user.username,
+      password: window.CS.getBMState().user.password,
+      lastname: window.CS.getBMState().user.lastname,
+      firstname: window.CS.getBMState().user.firstname,
     }
   }
   renderEditMode() {
@@ -50,34 +62,34 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
             <div className="col-md-3">
               <div className="col">
                 <label htmlFor="firstName">First Name:</label>
-                <input className="form-control" name="handleFirstName" onChange={this.handleChange} value={this.state.user.firstname}></input>
+                <input className="form-control" name="firstname" onChange={this.handleChange} value={this.state.firstname}></input>
               </div>
 
               <div className="col">
                 <label htmlFor="lastName">Last Name:</label>
-                <input className="form-control" name="handleLastName" onChange={this.handleChange} value={this.state.user.lastname}></input>
+                <input className="form-control" name="lastname" onChange={this.handleChange} value={this.state.lastname}></input>
               </div>
 
               <div className="col">
                 <label htmlFor="username">Username:</label>
-                <input className="form-control" name="handleUserName" onChange={this.handleChange} value={this.state.user.username}></input>
+                <input className="form-control" name="username" onChange={this.handleChange} value={this.state.username}></input>
               </div>
-
+              x
               <div className="col">
                 <label htmlFor="password">Password:</label>
-                <input className="form-control" name="handlePassword" onChange={this.handleChange} value="****"></input>
+                <input className="form-control" name="password" onChange={this.handleChange} value="****"></input>
               </div>
-              
-          <Button type="submit" onClick={this.saveProfile} >Save</Button>
+
+              <Button type="submit" onClick={this.saveProfile} >Save</Button>
             </div>
 
           </div>
         </form>
- 
 
 
-          
-    
+
+
+
       </div>
     )
   }
@@ -148,13 +160,10 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     this.setState({ edit_mode: true });
   }
 
-  handleChange = (event: ChangeEvent) => {
-    const target = event.target as HTMLInputElement
-    const name = target.name as string;
-    let newUser = this.state.user;
+  handleChange = (event: any) => {
     this.setState({
-      user: newUser
-    });
+      [event.target.name]: event.target.value
+    } as IJSXState);
   }
 
 
@@ -163,23 +172,23 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     const aiAction: IAction = {
       type: ActionType.server_called
     }
-  window.CS.clientAction(aiAction);
+    window.CS.clientAction(aiAction);
+    let user = JSON.parse(JSON.stringify(window.CS.getBMState().user))
+    user.username = this.state.username;
+    user.lastname = this.state.lastname;
+    user.firstname = this.state.firstname;
+    axios.post('/auth/signup', user)
+      .then(res => {
         const uiAction: IAction = {
-            type: ActionType.server_called
+          type: ActionType.user_updated
         }
+        history.push('/');
         window.CS.clientAction(uiAction);
-        axios.post('/auth/signup', window.CS.getBMState().user)
-            .then(res => {
-                const uiAction: IAction = {
-                    type: ActionType.user_updated
-                }
-                history.push('/');
-                window.CS.clientAction(uiAction);
 
-                console.log(res.data)
-            });
-
-}}
+        console.log(res.data)
+      });
+  }
+}
 
 //
 /*
