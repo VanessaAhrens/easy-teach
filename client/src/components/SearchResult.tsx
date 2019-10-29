@@ -21,7 +21,7 @@ export interface ISearchResultAction extends IAction {
 class SearchResult extends Component<{}, IState> {
   handleQuery = () => {
     history.push('/');
-}
+  }
 
   render() {
     return (
@@ -32,15 +32,20 @@ class SearchResult extends Component<{}, IState> {
           
             <tr key = {item._id}>
               <img src={item.lesson_pictureURL}></img>
+
               <td>{item.lesson_name}</td>
               <td> {item.lesson_location}</td>
               <td>
-                <button id={item._id}><Link to={'/LessonDetail/read/'+item._id}>Show</Link></button>
+                <button id={item._id}><Link to={'/LessonDetail/read/' + item._id}>Show</Link></button>
               </td>
             </tr>) : null}
-            <div className=" col-md-4 col-xs-4" >
-                        <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
-                    </div>
+          <tr>
+            <td >
+              <div className=" col-md-4 col-xs-4" >
+                <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
+              </div>
+            </td>
+          </tr>
 
         </tbody>
       </table>
