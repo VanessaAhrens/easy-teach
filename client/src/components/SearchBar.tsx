@@ -7,7 +7,6 @@ import axios from 'axios';
 import SimpleLesson from './SimpleLesson';
 import history from '../framework/history';
 import { Link } from 'react-router-dom';
-import German from '../../German.jpg'
 
 declare const window: IWindow;
 export interface ISearchAction extends IAction {
