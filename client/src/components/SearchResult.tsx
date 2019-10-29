@@ -25,30 +25,33 @@ class SearchResult extends Component<{}, IState> {
 
   render() {
     return (
-      <table>
-        <tbody>
-          <tr><th>Description</th><th>Location</th><th></th></tr>
-          {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
-          
-            <tr key = {item._id}>
-              <img src={item.lesson_pictureURL}></img>
+      <div>
 
-              <td>{item.lesson_name}</td>
-              <td> {item.lesson_location}</td>
-              <td>
+        <h3>Results</h3>
+        {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
+
+          <div className="row" key={item._id}>
+            <div className="col-md-4"></div>
+            <div className="col-md-4">
+              <img src={item.lesson_pictureURL}/>
+
+              <p>{item.lesson_name}</p>
+              <p> {item.lesson_location}</p>
+              <p>
                 <button id={item._id}><Link to={'/LessonDetail/read/' + item._id}>Show</Link></button>
-              </td>
-            </tr>) : null}
-          <tr>
-            <td >
-              <div className=" col-md-4 col-xs-4" >
-                <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
-              </div>
-            </td>
-          </tr>
+              </p>
+            </div>
+            <div className="col-md-4"></div>
+          </div>) : null}
 
-        </tbody>
-      </table>
+
+        <div className=" col-md-4 col-xs-4" >
+          <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
+        </div>
+
+
+
+      </div>
 
     );
 

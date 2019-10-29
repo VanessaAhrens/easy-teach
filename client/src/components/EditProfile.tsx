@@ -74,7 +74,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
                 <label htmlFor="username">Username:</label>
                 <input className="form-control" name="username" onChange={this.handleChange} value={this.state.username}></input>
               </div>
-              x
+              
               <div className="col">
                 <label htmlFor="password">Password:</label>
                 <input className="form-control" name="password" onChange={this.handleChange} value="****"></input>
