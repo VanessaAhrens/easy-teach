@@ -27,6 +27,8 @@ export interface ILessonData {
     lesson_amountPeople?: string;
     lesson_eMailTeacher?: string;
     lesson_aboutTeacher?: string;
+    lesson_pictureURL?: string;
+    lesson_rating?: number;
     
   }
 
