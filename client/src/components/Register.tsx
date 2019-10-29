@@ -31,7 +31,7 @@ export default class Register extends Component {
 
                     <div className="row" style={{ marginTop: '50px' }} >
                         <div className="col-md-4"></div>
-                        <div className="col-md-4">
+                        <div className="col-md-4 bg-light">
                             <div className="col">
                                 <label htmlFor="firstname">First name</label>
                                 <input type="text" onChange={this.handleFirstnameChange} value={window.CS.getBMState().user.firstname} className="form-control" placeholder="First name" />
@@ -47,8 +47,11 @@ export default class Register extends Component {
                             <div className="col">
                                 <label htmlFor="password">Password</label>
                                 <input type="text" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} className="form-control" placeholder="Password" />
+                                <br/>
                             </div>
                         </div>
+                        <div className="col-md-4"></div>
+
                     </div>
                     <div className="row" style={{ marginTop: '50px' }}>
                         <div className="col-md-5"></div>

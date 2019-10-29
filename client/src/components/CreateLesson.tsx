@@ -27,6 +27,8 @@ interface IJSXState {
         lesson_amountPeople?: any;
         lesson_eMailTeacher?: any;
         lesson_aboutTeacher?: any;
+        lesson_pictureURL?: any;
+        lesson_rating?: any;
     }
 }
 
@@ -43,7 +45,9 @@ reducerFunctions[ActionType.create_lesson] = function (newState: IState, updateA
         lesson_language: updateAction.lesson.lesson_language,
         lesson_amountPeople: updateAction.lesson.lesson_amountPeople,
         lesson_eMailTeacher: updateAction.lesson.lesson_eMailTeacher,
-        lesson_aboutTeacher: updateAction.lesson.lesson_aboutTeacher
+        lesson_aboutTeacher: updateAction.lesson.lesson_aboutTeacher,
+        lesson_pictureURL: updateAction.lesson.lesson_pictureURL,
+        lesson_rating: updateAction.lesson.lesson_rating
     };
     console.log(newLesson);
     return newLesson;
@@ -61,7 +65,9 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
             lesson_language: '',
             lesson_amountPeople: '',
             lesson_eMailTeacher: '',
-            lesson_aboutTeacher: ''
+            lesson_aboutTeacher: '',
+            lesson_pictureURL: '',
+            lesson_rating: 0,
         }
     }
     render() {
@@ -123,6 +129,14 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
                     <div className="form-group col-md-8">
                         <label htmlFor="about">About me</label>
                         <input className="form-control" id="createaboutTeacher" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group col-md-8">
+                        <label htmlFor="about">Picture</label>
+                        <input className="form-control" id="createaboutTeacher" type="text" name="lesson_pictureURL" value={this.state.lesson.lesson_pictureURL} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group col-md-8">
+                        <label htmlFor="about">Rating</label>
+                        <input className="form-control" id="createaboutTeacher" type="text" name="lesson_rating" value={this.state.lesson.lesson_rating} onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="row" style={{ marginTop: '50px' }}>
