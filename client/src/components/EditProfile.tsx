@@ -1,4 +1,5 @@
 import React, { Component, ChangeEvent } from 'react'
+
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
 import { ILessonData, IState, IUser } from '../state/appState'
@@ -6,7 +7,6 @@ import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import history from '../framework/history';
 import { IWindow } from '../framework/IWindow'
-import { Button } from 'react-bootstrap';
 
 declare let window: IWindow;
 interface IProps {
@@ -19,16 +19,6 @@ interface IJSXState {
   lastname: string;
   firstname: string;
   password: string;
-}
-
-interface IUserAction extends IAction {
-  user: IUser
-}
-
-reducerFunctions[ActionType.user_updated] = function (newState: IState, updateAction: IUserAction) {
-  console.log(updateAction.user);
-  newState.BM.user = updateAction.user;
-  return newState
 }
 
 export default class EditProfile extends React.PureComponent<IProps, IJSXState> {
@@ -56,6 +46,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
   renderEditMode() {
     return (
       <div>
+
         <form>
           <div className="row" style={{ marginTop: '50px' }} >
             <div className="col-md-2"></div>
@@ -86,9 +77,13 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
           </div>
         </form>
 
+        </div>
+        <div className="RealEdit"><div>Username: </div>
+          <input name="handleUserName" onChange={this.handleChange} value={this.state.user.username}></input>
 
-
-
+        </div>
+        <div className="RealEdit"><div>Password</div>
+          <input name="handlePassword" onChange={this.handleChange} value={this.state.user.password}></input>
 
       </div>
     )
@@ -96,30 +91,43 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
   renderViewMode() {
     return (
       <div>
-        <div className="Edit">
-          <p>Username: {window.CS.getBMState().user.username}</p>
+ <div className="row" style={{ marginTop: '50px' }} >
+  <div className="col-md-2"></div>
+  <div className="col-md-2">
 
-        </div>
+      <div className="Edit">
+          <p>Username: {window.CS.getBMState().user.username}</p>
+      </div>
+
         <div className="Edit">
           <p>First Name: {window.CS.getBMState().user.firstname}</p>
-
         </div>
+
         <div className="Edit">
           <p>Last Name: {window.CS.getBMState().user.lastname}</p>
-
         </div>
+
         <div className="Edit">
           <p>Password: ************</p>
-
         </div>
+
         <div className="Edit">
           <p>Picture: </p>
-
         </div>
 
+     </div>
+    </div>
+   <div className="row" style={{ marginTop: '5px' }}>
+   <div className="col-md-2"></div>
+ 
+
+  </div>
+  <div className="col-md-2"></div>
+        <div className="col-md-2">
         <button className="btn btn-primary" onClick={this.handleSwitchToEditMode}>Edit</button>
         <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
-      </div>
+</div>
+  </div>
     )
   }
   render() {
@@ -160,6 +168,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     this.setState({ edit_mode: true });
   }
 
+
   handleChange = (event: any) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -191,26 +200,10 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
         console.log(res.data)
       });
   }
+
 }
 
 //
-/*
-handleSubmit(event: any) {
-        event.preventDefault();
-        const uiAction: IAction = {
-            type: ActionType.server_called
-        }
-        window.CS.clientAction(uiAction);
-        axios.post('/auth/signup', window.CS.getBMState().user)
-            .then(res => {
-                const uiAction: IAction = {
-                    type: ActionType.user_created
-                }
-                history.push('/');
-                window.CS.clientAction(uiAction);
 
-                console.log(res.data)
-            });
-    }*/
 
 
