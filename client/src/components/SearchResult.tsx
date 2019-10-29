@@ -29,7 +29,10 @@ class SearchResult extends Component<{}, IState> {
         <tbody>
           <tr><th>Description</th><th>Location</th><th></th></tr>
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
-            <tr key={item._id}>
+          
+            <tr key = {item._id}>
+              <img src={item.lesson_pictureURL}></img>
+
               <td>{item.lesson_name}</td>
               <td> {item.lesson_location}</td>
               <td>
