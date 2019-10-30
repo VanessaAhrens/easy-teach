@@ -26,15 +26,23 @@ class SearchResult extends Component<{}, IState> {
   render() {
     if (window.CS.getBMState().searchResult.length == 0) {
       return (
+        <div>
         <div className="row d-flex justify-content-start" style={{ marginTop: '50px' }} >
           <div className="col-md-2"></div>
           <div className="col-md-6 ">
-            <div className="jumbotron">
-              <div className="container">
+            <div className="jumbotron bg-info">
+              <div className="container ">
                 <h1 className="display-4">Sorry!</h1>
                 <p className="lead">We have currently no Teacher for your search...</p>
               </div></div>
-          </div></div>
+          </div>
+        </div>
+        <div className="row">
+        <div className=" col-md-4 col-xs-4" > </div>
+        <div className="col-md-4 d-flex justify-content-center" style={{ marginTop: '2%' }}>
+          <button className="btn btn-primary" onClick={this.handleQuery} >Back to Home</button>
+        </div>
+      </div></div>
       )
     } else {
       return (

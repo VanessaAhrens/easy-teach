@@ -50,7 +50,7 @@ export default class Login extends Component {
 
                             <div className="row  " style={{ marginTop: '50px' }} >
                                 <div className="col-md-4"></div>
-                                <div className="col-md-4 bg-light">
+                                <div className="col-md-4 bg-info">
                                     <div className="form-group">
                                         <label htmlFor="exampleInputEmail1">Username</label>
                                         <input type="username" className="form-control" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />

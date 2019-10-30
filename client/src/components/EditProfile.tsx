@@ -53,7 +53,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
         <form>
           <div className="row" style={{ marginTop: '50px' }} >
             <div className="col-md-2"></div>
-            <div className="col-md-3 bg-light">
+            <div className="col-md-3 bg-info">
               <div className="col">
                 <label htmlFor="firstName">First Name:</label>
                 <input className="form-control" name="firstname" onChange={this.handleChange} value={this.state.firstname}></input>
@@ -97,7 +97,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
       <div>
  <div className="row d-flex justify-content-start" style={{ marginTop: '50px' }} >
   <div className="col-md-2"></div>
-  <div className="col-md-2 bg-light">
+  <div className="col-md-2 bg-info">
 
       <div className="Edit">
       <div className="col">

@@ -61,7 +61,7 @@ class SearchBar extends Component<{}, IState> {
         </div>
       </div>
       
-<div className="container marketing" style={{ marginTop: '5%' }}>
+<div className="container marketing" style={{ marginTop: '7%' }}>
   <div className="row">
     <div className="col-lg-4 d-flex flex-column justify-content-center align-items-center text-center">
       <img className="rounded-circle" src={'.././German.jpg'}  alt="teacher-pic" width='130' height='130' />
