@@ -45,7 +45,8 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 4,
     lesson_eMailTeacher: "primosch@mediamarktsaturn.com",
-    lesson_aboutTeacher: "Hi, I am a professional Tennis teacher. I am looking forward to our future lessons."
+    lesson_aboutTeacher: "Hi, I am a professional Tennis teacher. I am looking forward to our future lessons.",
+    lesson_pictureURL: "https://www.radiowroclaw.pl/img/articles/88000/bL2oZ3Q0dX.jpg"
   },
   { lesson_name: "Harfe",
     lesson_duration:120,
@@ -55,7 +56,8 @@ let lessons = [
     lesson_language:"Englisch",
     lesson_amountPeople: 2,
     lesson_eMailTeacher: "vahrens@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a musician and i like to play the harp."
+    lesson_aboutTeacher: "I am a musician and i like to play the harp.",
+    lesson_pictureURL: "https://www.musikschule-hochsauerlandkreis.de/wp-content/uploads/2019/01/Dorothea-Bach-300x200.jpeg"
   },
   { lesson_name: "Tennis",
     lesson_duration:80,
@@ -65,7 +67,19 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 4,
     lesson_eMailTeacher: "primosch@mediamarktsaturn.com",
-    lesson_aboutTeacher: "Hi, I am a professional tennis teacher. I am looking forward to our future lessons."
+    lesson_aboutTeacher: "Hi, I am a professional tennis teacher. I am looking forward to our future lessons.",
+    lesson_pictureURL: "https://www.delraytennis.com/wp-content/uploads/sites/2829/2014/10/Jeff-Bingo-GM-of-Racquet-Sports-in-Delray-Beach-Florida-1024x753.jpg"
+  },
+  { lesson_name: "Tennis",
+    lesson_duration:60,
+    lesson_location: "München",
+    lesson_price: 60,
+    lesson_equip: "Tennis Racket and shoes",
+    lesson_language:"German",
+    lesson_amountPeople: 4,
+    lesson_eMailTeacher: "primosch@mediamarktsaturn.com",
+    lesson_aboutTeacher: "Hi, I am a tennis teacher and I want to find new talents.",
+    lesson_pictureURL: "https://www.narcity.com/u/2019/08/12/c13c40d1834455b69bc45fc3cfa5d9dd.png_1200x630.png"
   },
   { lesson_name: "Skateboard",
     lesson_duration:60,

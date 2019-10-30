@@ -53,7 +53,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
         <form>
           <div className="row" style={{ marginTop: '50px' }} >
             <div className="col-md-2"></div>
-            <div className="col-md-3">
+            <div className="col-md-3 bg-light">
               <div className="col">
                 <label htmlFor="firstName">First Name:</label>
                 <input className="form-control" name="firstname" onChange={this.handleChange} value={this.state.firstname}></input>
@@ -72,64 +72,74 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
               <div className="col">
                 <label htmlFor="password">Password:</label>
                 <input className="form-control" name="password" onChange={this.handleChange} value="****"></input>
+                <p> &nbsp;</p>
               </div>
-
-              <Button type="submit" onClick={this.saveProfile} >Save</Button>
-            </div>
-
+            
+            <div className="col-md-2"></div>
           </div>
-        </form>
+          </div>
+          
+          <div className="col-md-7">
+            <div className="d-flex justify-content-center" style={{ marginBottom: '5px' }}>
+              <Button type="submit" onClick={this.saveProfile} style={{ marginTop: '5px' }} >Save</Button>
+              </div>
+          </div>
+        </form> 
 
         </div>
-        <div className="RealEdit"><div>Username: </div>
-          <input name="handleUserName" onChange={this.handleChange} value={this.state.username}></input>
-
-        </div>
-        <div className="RealEdit"><div>Password</div>
-          <input name="handlePassword" onChange={this.handleChange} value={this.state.password}></input>
-         </div>
           </div>
     )
   }
+
+
   renderViewMode() {
     return (
       <div>
- <div className="row" style={{ marginTop: '50px' }} >
+ <div className="row d-flex justify-content-start" style={{ marginTop: '50px' }} >
   <div className="col-md-2"></div>
-  <div className="col-md-2">
+  <div className="col-md-2 bg-light">
 
       <div className="Edit">
+      <div className="col">
           <p>Username: {window.CS.getBMState().user.username}</p>
       </div>
 
         <div className="Edit">
+        <div className="col">
           <p>First Name: {window.CS.getBMState().user.firstname}</p>
         </div>
 
         <div className="Edit">
+        <div className="col">
           <p>Last Name: {window.CS.getBMState().user.lastname}</p>
         </div>
 
         <div className="Edit">
+        <div className="col">
           <p>Password: ************</p>
         </div>
 
         <div className="Edit">
+        <div className="col">
           <p>Picture: </p>
-        </div>
-
-     </div>
-    </div>
-   <div className="row" style={{ marginTop: '5px' }}>
-   <div className="col-md-2"></div>
- 
-
-  </div>
-  <div className="col-md-2"></div>
-        <div className="col-md-2">
+          </div>
+          </div>
+          </div>
+          </div></div></div></div>
+          </div>
+        <div className="row d-flex justify-content-start" style={{ marginTop: '10px' }}>
+        <div className="col-md-2"></div>
         <button className="btn btn-primary" onClick={this.handleSwitchToEditMode}>Edit</button>
+        
+        <div className="row">
+        <div className="col-md-2"></div>
         <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
-</div>
+        
+     
+ 
+    </div>
+        
+  </div>
   </div>
     )
   }
@@ -190,7 +200,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     user.lastname = this.state.lastname;
     user.firstname = this.state.firstname;
 
-    axios.put('/auth/user/update', user )
+    axios.put('/auth/user/update', user)
       .then(res => {
         console.log(res.data)
         const uiAction: IUserAction = {

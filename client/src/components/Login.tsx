@@ -67,15 +67,18 @@ export default class Login extends Component {
                                         <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
                                     </div>
                                 </div>
-                                <div className="row" style={{ marginTop: '50px' }}>
-                                    <div className="col-md-5"></div>
-                                </div>
-                                <p>{window.CS.getUIState().Login.errorMessage}</p>
+                                <div className="row"></div>
+
                             </div>
-                            <div className="row" style={{ marginTop: '50px' }}>
+                            <div className="row d-flex justify-content-center" style={{ marginTop: '50px' }}>
                                 <div className="col-md-5"></div>
-                                <div className="col-md-5">
+                                <div className="col-md-7">
                                     <input className="btn btn-primary" type="submit" value="Login" /></div>
+
+                                <div className="d-flex justify-content-center"></div>
+                                <div className="col-md-4" style={{ marginTop: '50px' }}>
+                                   {window.CS.getUIState().Login.errorMessage}
+                                </div>
                             </div>
                         </form>
                     </div>

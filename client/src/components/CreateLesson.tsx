@@ -70,10 +70,10 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
         }
     }
     render() {
-        
+
         { console.log(this.state.lesson) }
         return (
-        
+
 
             <form>
                 <div className="form-row" style={{ marginTop: '50px' }}>
@@ -129,20 +129,28 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
                         <label htmlFor="about">About me</label>
                         <input className="form-control" id="createaboutTeacher" type="text" name="lesson_aboutTeacher" value={this.state.lesson.lesson_aboutTeacher} onChange={this.handleChange} />
                     </div>
+                </div>
+                <div className="form-row">
+                    <div className="col-md-2"></div>
                     <div className="form-group col-md-8">
                         <label htmlFor="about">Picture</label>
                         <input className="form-control" id="createaboutTeacher" type="text" name="lesson_pictureURL" value={this.state.lesson.lesson_pictureURL} onChange={this.handleChange} />
                     </div>
+                </div>
+
+                <div className="form-row">
+                    <div className="col-md-2"></div>
                     <div className="form-group col-md-8">
                         <label htmlFor="about">Rating</label>
                         <input className="form-control" id="createaboutTeacher" type="text" name="lesson_rating" value={this.state.lesson.lesson_rating} onChange={this.handleChange} />
                     </div>
                 </div>
+
                 <div className="row" style={{ marginTop: '50px' }}>
                     <div className="col-md-5"></div>
                     <Button type="submit" className="btn btn-primary" onClick={this.handleSave} >Save Lesson</Button>
                 </div>
-                <div id = "successful" style={{color: 'lightgreen', textAlign: 'center', margin: '30px'}}></div>
+                <div id="successful" style={{ color: 'lightgreen', textAlign: 'center', margin: '30px' }}></div>
             </form>
         )
 
@@ -186,7 +194,7 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
             });
         let success = document.getElementById("successful")!
         success.innerText = "The creation of the lesson was successful and your students can now reach you. Happy teaching!";
-        event.preventDefault();   
+        event.preventDefault();
 
 
 
