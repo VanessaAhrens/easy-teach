@@ -39,22 +39,25 @@ class SearchResult extends Component<{}, IState> {
     } else {
       return (
         <div>
-            <h5 className="d-flex justify-content-center" >We found following results for your search:</h5>
+          <h5 className="d-flex justify-content-center" style={{ marginTop: '2%' }} >We found following results for your search:</h5>
 
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
             <>
               <div className="row" style={{ marginTop: '2%' }} ></div>
-              
+
 
 
               <div className="row " style={{ marginTop: '2%', marginBottom: '2%' }} key={item._id} >
+                <div className="col-md-1"></div>
+                <div className="col-md-2" > <img className="rounded-circle" src={item.lesson_pictureURL} alt="No picture added" width='130' height='130' /> </div>
 
-                <div className="col-md-2" ></div>
-                <div className="col-md-8 bg-primary" >
-                  <img src={item.lesson_pictureURL} />
-
-                  <div className="d-flex justify-content-around bg-light"> <span>{item.lesson_name}</span>   <span>{item.lesson_location}</span>  <span>{item.lesson_price}€</span> </div>
-
+                <div className="col-md-6 bg-primary d-flex align-items-center" >
+                  <div className=" col-md-4 bg-light " >
+                    <span>{item.lesson_name}</span>    </div>
+                  <div className=" bg-light flex-fill ">
+                    <span>{item.lesson_location}</span> </div>
+                  <div className=" bg-light  ">
+                    <span>{item.lesson_price}€</span> </div>
                 </div>
 
                 <div className="col-md-2 d-flex justify-content-center" style={{ marginTop: '2%' }}> <button className="btn btn-primary " id={item._id}><Link style={{ textDecoration: 'none', color: 'white' }} to={'/LessonDetail/read/' + item._id}>Show</Link></button></div>

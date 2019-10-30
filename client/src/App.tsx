@@ -72,7 +72,7 @@ export default class App extends React.PureComponent<IProps, IState> {
             <Route path="/editprofile" component={EditProfile} edit={false} />
             <Route path="/" component={SearchBar} />
           </Switch>
-        </div>
+          </div>
       </div>
     );
   }
