@@ -24,6 +24,16 @@ class SearchResult extends Component<{}, IState> {
   }
 
   render() {
+    if (window.CS.getBMState().searchResult.length == 0) {
+    return (
+      <div className="jumbotron jumbotron-fluid">
+      <div className="container">
+        <h1 className="display-4">Sorry!</h1>
+        <p className="lead">Sorry! We have currently no Teacher for your search.</p>
+      </div>
+    </div>
+    )
+  } else {
     return (
       <div>
 
@@ -53,13 +63,10 @@ class SearchResult extends Component<{}, IState> {
             <button className="btn btn-primary" onClick={this.handleQuery} >Back</button>
           </div>
         </div>
-
-
-
       </div>
 
     );
 
   }
-}
+}}
 export default SearchResult;
