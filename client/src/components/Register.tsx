@@ -46,7 +46,7 @@ export default class Register extends Component {
                             </div>
                             <div className="col">
                                 <label htmlFor="password">Password</label>
-                                <input type="text" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} className="form-control" placeholder="Password" />
+                                <input type="password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} className="form-control" placeholder="Password" />
                                 <br/>
                             </div>
                         </div>
