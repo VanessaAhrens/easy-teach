@@ -5,19 +5,14 @@ import { ILessonData, IState } from '../state/appState'
 import axios from 'axios';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
-import history from '../framework/history';
 import './CreateLesson.css';
 import mongoose from 'mongoose';
-import { string } from 'prop-types';
 import { Button } from 'react-bootstrap';
 declare let window: IWindow;
 
-
-
-
 interface IJSXState {
     lesson: {
-        [key: string]: string | number;
+        [key: string]: string | number | Object;
         lesson_name: any;
         lesson_duration?: any;
         lesson_location?: any;
@@ -29,6 +24,8 @@ interface IJSXState {
         lesson_aboutTeacher?: any;
         lesson_pictureURL?: any;
         lesson_rating?: any;
+        lesson_overallAmountOfRating?: any;
+        lesson_peopleRating?: any;
     }
 }
 
@@ -49,7 +46,6 @@ reducerFunctions[ActionType.create_lesson] = function (newState: IState, updateA
         lesson_pictureURL: updateAction.lesson.lesson_pictureURL,
         lesson_rating: updateAction.lesson.lesson_rating
     };
-    console.log(newLesson);
     return newLesson;
 }
 
@@ -67,7 +63,10 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
             lesson_eMailTeacher: '',
             lesson_aboutTeacher: '',
             lesson_pictureURL: '',
-            lesson_rating: 0,
+            lesson_overallAmountOfRating: 0,
+            lesson_peopleRating: [],
+            lesson_rating: 0
+
         }
     }
     render() {

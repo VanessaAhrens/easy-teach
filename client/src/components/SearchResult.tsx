@@ -42,6 +42,7 @@ class SearchResult extends Component<{}, IState> {
             <h5 className="d-flex justify-content-center" >We found following results for your search:</h5>
 
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
+
             <>
               <div className="row" style={{ marginTop: '2%' }} ></div>
               
@@ -54,7 +55,7 @@ class SearchResult extends Component<{}, IState> {
                   <img src={item.lesson_pictureURL} />
 
                   <div className="d-flex justify-content-around bg-light"> <span>{item.lesson_name}</span>   <span>{item.lesson_location}</span>  <span>{item.lesson_price}€</span> </div>
-
+                   <div> {item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'No ratings' }</div>
                 </div>
 
                 <div className="col-md-2 d-flex justify-content-center" style={{ marginTop: '2%' }}> <button className="btn btn-primary " id={item._id}><Link style={{ textDecoration: 'none', color: 'white' }} to={'/LessonDetail/read/' + item._id}>Show</Link></button></div>
