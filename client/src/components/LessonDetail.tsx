@@ -27,13 +27,16 @@ interface IState {
     subject: string;
     message: string;
     rating: number;
+    id: string;
 }
 
 export default class LessonDetail extends React.Component<IProps, IState>  {
     constructor(props: any) {
         super(props)
+        let id = window.CS.getBMState().user as any;
         let lessonToRender = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id);
         this.state = {
+            id: id._id,
             lessonToRender: lessonToRender[0] ? lessonToRender[0] : null,
             email: lessonToRender[0] ? lessonToRender[0].lesson_eMailTeacher : "",
             subject: lessonToRender[0] ? `${lessonToRender[0].lesson_name} in ${lessonToRender[0].lesson_location}` : "",
@@ -60,7 +63,6 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
         } as IState)
     }
     render() {
-        const lessonToRender = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id);
         return (
             <div>
                 {this.state.lessonToRender ? <><h1>{this.state.lessonToRender.lesson_name}</h1>
@@ -77,14 +79,16 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
                         <textarea name="message" value={this.state.message} onChange={this.changeHandler} />
                         <button type="submit">Send</button>
                     </form>
-
-                    <form onSubmit={(event) => this.giveFeedback(event)}>
+                    {
+                    this.state.id && !this.state.lessonToRender.lesson_peopleRating.includes(this.state.id) && 
+                    (<form onSubmit={(event) => this.giveFeedback(event)}>
                         <input id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
-                        <button className="btn btn-primary" id="submitrating"></button>
-                    </form>
+                        <button className="btn btn-primary" id="submitrating"></button> 
+                    </form>)
+                    }   
                     <div className=" col-md-4 col-xs-4" >
-                        <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
-                    </div>
+                    <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
+                </div>
                 </>
                     : <h1>Please return to search and try again</h1>}
 

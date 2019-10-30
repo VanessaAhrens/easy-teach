@@ -138,13 +138,13 @@ export default class CreateLesson extends React.Component<{}, IJSXState> {
                     </div>
                 </div>
 
-                <div className="form-row">
+                {/*<div className="form-row">
                     <div className="col-md-2"></div>
                     <div className="form-group col-md-8">
                         <label htmlFor="about">Rating</label>
                         <input className="form-control" id="createaboutTeacher" type="text" name="lesson_rating" value={this.state.lesson.lesson_rating} onChange={this.handleChange} />
                     </div>
-                </div>
+                </div>*/}
 
                 <div className="row" style={{ marginTop: '50px' }}>
                     <div className="col-md-5"></div>
