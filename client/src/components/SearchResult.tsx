@@ -31,13 +31,14 @@ class SearchResult extends Component<{}, IState> {
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
           
             <tr key = {item._id}>
-              <img src={item.lesson_pictureURL}></img>
-
+              
+            <td><img src={item.lesson_pictureURL}></img></td>
               <td>{item.lesson_name}</td>
               <td> {item.lesson_location}</td>
               <td>
                 <button id={item._id}><Link to={'/LessonDetail/read/' + item._id}>Show</Link></button>
               </td>
+              <td> {item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'No ratings' }</td>
             </tr>) : null}
           <tr>
             <td >

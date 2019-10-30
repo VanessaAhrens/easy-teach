@@ -29,7 +29,8 @@ export interface ILessonData {
     lesson_aboutTeacher?: string;
     lesson_pictureURL?: string;
     lesson_rating?: number;
-    
+    lesson_peopleRating?: [string];
+    lesson_overallAmountOfRating?: number;
   }
 
 export interface IBM{
@@ -52,17 +53,21 @@ export const initial:IState = {
         counter: 0,
         loggedIn: false,
         waitingForResponse: false,
-        Login: {errorMessage:""}
+        Login: {errorMessage:""},
+        
    },
     BM: {
        user:{
            firstname:"",
            lastname:"",
            username:"",
-           password:""
+           password:"",
+           
        },
        lessons:[],
        searchQuery:"",
-       searchResult: []
+       searchResult: [],
+       
+       
     }
 };

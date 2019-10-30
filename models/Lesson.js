@@ -40,6 +40,12 @@ let Lesson = new Schema({
     },
     lesson_rating: {
         type: Number
+    },
+    lesson_peopleRating: {
+        type: [String]
+    },
+    lesson_overallAmountOfRating: {
+        type: Number
     }
 
     

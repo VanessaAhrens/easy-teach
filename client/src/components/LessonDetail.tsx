@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { IWindow } from '../framework/IWindow';
-
+import { ILessonData, IUser } from '../state/appState'
 import { ActionType, IAction } from '../framework/IAction';
 import axios from 'axios';
 import history from '../framework/history';
@@ -9,6 +9,9 @@ export interface ISearchResultAction extends IAction {
     data: Object;
 }
 
+interface IUserAction extends IAction {
+    user: IUser
+}
 
 declare let window: IWindow;
 
@@ -19,22 +22,26 @@ interface IProps {
 }
 
 interface IState {
+    lessonToRender: any,
     email: string;
     subject: string;
     message: string;
+    rating: number;
 }
 
 export default class LessonDetail extends React.Component<IProps, IState>  {
     constructor(props: any) {
         super(props)
-        let lesson = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id)
+        let lessonToRender = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id);
         this.state = {
-            email: lesson[0] ? lesson[0].lesson_eMailTeacher : "",
-            subject: lesson[0] ? `${lesson[0].lesson_name} in ${lesson[0].lesson_location}` : "",
-            message: "Hi, I would like to attend your lesson"
+            lessonToRender: lessonToRender[0] ? lessonToRender[0] : null,
+            email: lessonToRender[0] ? lessonToRender[0].lesson_eMailTeacher : "",
+            subject: lessonToRender[0] ? `${lessonToRender[0].lesson_name} in ${lessonToRender[0].lesson_location}` : "",
+            message: "Hi, I would like to attend your lesson",
+            rating: 10
         }
     }
-    
+
     handleQuery = () => {
         history.push('/searchresult');
     }
@@ -42,28 +49,38 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
         e.preventDefault();
         axios.post('/lessons/email', this.state)
     }
-    changeHandler = (e:any) => {
+    changeHandler = (e: any) => {
         this.setState({
             [e.target.name]: e.target.value
+        } as IState)
+    }
+    changeHandlerInt = (e: any) => {
+        this.setState({
+            rating: parseInt(e.target.value)
         } as IState)
     }
     render() {
         const lessonToRender = window.CS.getBMState().searchResult.filter((item: any) => this.props.match.params.id === item._id);
         return (
             <div>
-                {lessonToRender.length != 0 ? <><h1>{lessonToRender[0].lesson_name}</h1>
-                    <p>Location: {lessonToRender[0].lesson_location}</p>
-                    <p>Price per Session: {lessonToRender[0].lesson_price} EUR</p>
-                    <p>Duration: {lessonToRender[0].lesson_duration} min</p>
-                    <p>Needed Equipment: {lessonToRender[0].lesson_equip}</p>
-                    <p>Teaching Language: {lessonToRender[0].lesson_language}</p>
-                    <p>Number of participants: {lessonToRender[0].lesson_amountPeople}</p>
-                    <p>About me: {lessonToRender[0].lesson_abaoutTeacher}</p>
-                    <p>Send email to: {lessonToRender[0].lesson_eMailTeacher}</p>
+                {this.state.lessonToRender ? <><h1>{this.state.lessonToRender.lesson_name}</h1>
+                    <p>Location: {this.state.lessonToRender.lesson_location}</p>
+                    <p>Price per Session: {this.state.lessonToRender.lesson_price} EUR</p>
+                    <p>Duration: {this.state.lessonToRender.lesson_duration} min</p>
+                    <p>Needed Equipment: {this.state.lessonToRender.lesson_equip}</p>
+                    <p>Teaching Language: {this.state.lessonToRender.lesson_language}</p>
+                    <p>Number of participants: {this.state.lessonToRender.lesson_amountPeople}</p>
+                    <p>About me: {this.state.lessonToRender.lesson_abaoutTeacher}</p>
+                    <p>Send email to: {this.state.lessonToRender.lesson_eMailTeacher}</p>
                     <form onSubmit={(e) => this.emailHandler(e)}>
-                        <input type="text" name="subject" value = {this.state.subject} onChange={this.changeHandler}/>
-                        <textarea name="message" value = {this.state.message} onChange={this.changeHandler}/>
+                        <input type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
+                        <textarea name="message" value={this.state.message} onChange={this.changeHandler} />
                         <button type="submit">Send</button>
+                    </form>
+
+                    <form onSubmit={(event) => this.giveFeedback(event)}>
+                        <input id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
+                        <button className="btn btn-primary" id="submitrating"></button>
                     </form>
                     <div className=" col-md-4 col-xs-4" >
                         <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
@@ -73,5 +90,29 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
 
             </div>
         )
+    }
+
+    giveFeedback(event: any) {
+        event.preventDefault();
+        const user = window.CS.getBMState().user as any
+        if (!this.state.lessonToRender.lesson_peopleRating.includes(user._id)) {
+            this.state.lessonToRender.lesson_peopleRating.push(user._id)
+            this.state.lessonToRender.lesson_overallAmountOfRating += this.state.rating;
+            const aiAction: IAction = {
+                type: ActionType.server_called
+            }
+            window.CS.clientAction(aiAction);
+            console.log(this.state.lessonToRender)
+            axios.put('/lessons/rate/'+this.state.lessonToRender._id, this.state.lessonToRender)
+                .then(res => {
+                    console.log(res.data)
+                    const uiAction: IUserAction = {
+                        type: ActionType.user_updated,
+                        user: res.data
+                    }
+                    window.CS.clientAction(uiAction);
+                });
+        }
+
     }
 }
