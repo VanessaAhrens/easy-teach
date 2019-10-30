@@ -64,7 +64,7 @@ class SearchResult extends Component<{}, IState> {
                     <span>{item.lesson_name}</span>    </div>
                   <div className=" bg-light flex-fill ">
                     <span>{item.lesson_location}</span> </div>
-                  <div className=" bg-light  ">
+                  <div className=" col-md-2 bg-light  ">
                     <span>{item.lesson_price}€</span> </div>
                 </div>
 
