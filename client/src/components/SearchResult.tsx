@@ -27,26 +27,31 @@ class SearchResult extends Component<{}, IState> {
     return (
       <div>
 
-        <h3>Results</h3>
+
         {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
-
-          <div className="row" key={item._id}>
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <img src={item.lesson_pictureURL}/>
-
-              <p>{item.lesson_name}</p>
-              <p> {item.lesson_location}</p>
-              <p>
-                <button id={item._id}><Link to={'/LessonDetail/read/' + item._id}>Show</Link></button>
-              </p>
-            </div>
-            <div className="col-md-4"></div>
-          </div>) : null}
+          <>
+            <div className="row" style={{ marginTop: '2%' }} ></div>
+            <h5 className="d-flex justify-content-center" >We found following results for your search:</h5>
 
 
-        <div className=" col-md-4 col-xs-4" >
-          <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
+            <div className="row " style={{ marginTop: '2%', marginBottom: '2%' }} key={item._id} >
+
+              <div className="col-md-2" ></div>
+              <div className="col-md-8 bg-primary" >
+                <img src={item.lesson_pictureURL} />
+
+              <div className="d-flex justify-content-around bg-light"> <span>{item.lesson_name}</span>   <span>{item.lesson_location }</span>  <span>{item.lesson_price}€</span> </div>
+                
+              </div>
+
+              <div className="col-md-2 d-flex justify-content-center" style={{ marginTop: '2%' }}> <button className="btn btn-primary " id={item._id}><Link style={{ textDecoration: 'none', color: 'white' }} to={'/LessonDetail/read/' + item._id}>Show</Link></button></div>
+            </div></>) : null}
+        
+        <div className="row">
+          <div className=" col-md-4 col-xs-4" > </div>
+          <div className="col-md-4 d-flex justify-content-center" style={{ marginTop: '2%' }}>
+            <button className="btn btn-primary" onClick={this.handleQuery} >Back</button>
+          </div>
         </div>
 
 
