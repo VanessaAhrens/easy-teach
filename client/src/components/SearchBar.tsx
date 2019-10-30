@@ -63,19 +63,19 @@ class SearchBar extends Component<{}, IState> {
       
 <div className="container marketing" style={{ marginTop: '5%' }}>
   <div className="row">
-    <div className="col-lg-4">
+    <div className="col-lg-4 d-flex flex-column justify-content-center align-items-center text-center">
       <img className="rounded-circle" src={'.././German.jpg'}  alt="teacher-pic" width='130' height='130' />
       <h3>Stefan Arndt</h3>
       <p>"German as foreign language adjusted to your level!"</p>
       <p><Link className = "btn btn-primary" to = "/login" role="button" >View details</Link></p>
     </div>
-    <div className="col-lg-4">
+    <div className="col-lg-4 d-flex flex-column justify-content-center align-items-center text-center">
       <img className="rounded-circle" src={'.././Math.JPG'}  alt="teacher-pic" width='130' height='130' />
       <h3>Peter Hendricks</h3>
       <p>"Mathematics for your base studies - until you pass your tests."</p>
       <p><Link className = "btn btn-primary" to = "/login" role="button" >View details</Link></p>
     </div>
-    <div className="col-lg-4">
+    <div className="col-lg-4 d-flex flex-column justify-content-center align-items-center text-center">
       <img className="rounded-circle" src={'.././Music.jpg'}  alt="teacher-pic" width='130' height='130' />
       <h3>Claudia Moy</h3>
       <p>"Music Lessons for students and children from a professional Oboist."</p>
