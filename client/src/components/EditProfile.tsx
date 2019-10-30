@@ -59,7 +59,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
         <form>
           <div className="row" style={{ marginTop: '50px' }} >
             <div className="col-md-2"></div>
-            <div className="col-md-3">
+            <div className="col-md-3 bg-light">
               <div className="col">
                 <label htmlFor="firstName">First Name:</label>
                 <input className="form-control" name="firstname" onChange={this.handleChange} value={this.state.firstname}></input>
@@ -74,22 +74,22 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
                 <label htmlFor="username">Username:</label>
                 <input className="form-control" name="username" onChange={this.handleChange} value={this.state.username}></input>
               </div>
-              
+
               <div className="col">
                 <label htmlFor="password">Password:</label>
                 <input className="form-control" name="password" onChange={this.handleChange} value="****"></input>
               </div>
-
-              <Button type="submit" onClick={this.saveProfile} >Save</Button>
             </div>
+            <div className="col-md-2"></div>
+          </div>
 
+          
+          <div className="col-md-3">
+            <div className="d-flex justify-content-center" style={{ marginBottom: '5%' }}>
+              <Button type="submit" onClick={this.saveProfile} style={{ marginTop: '50px' }} >Save</Button>
+            </div>
           </div>
         </form>
-
-
-
-
-
       </div>
     )
   }
@@ -178,7 +178,7 @@ export default class EditProfile extends React.PureComponent<IProps, IJSXState> 
     user.lastname = this.state.lastname;
     user.firstname = this.state.firstname;
 
-    axios.put('/auth/user/update', user )
+    axios.put('/auth/user/update', user)
       .then(res => {
         console.log(res.data)
         const uiAction: IUserAction = {

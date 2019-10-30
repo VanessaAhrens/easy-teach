@@ -80,11 +80,8 @@ class SearchBar extends Component<{}, IState> {
       <h3>Claudia Moy</h3>
       <p>"Music Lessons for students and children from a professional Oboist."</p>
       <p><Link className = "btn btn-primary" to = "/login" role="button" >View details</Link></p>
-      
     </div>
   </div>
-  
-  
 </div>
 </>
     );
