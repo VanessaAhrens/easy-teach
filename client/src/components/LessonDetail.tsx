@@ -90,22 +90,26 @@ export default class LessonDetail extends React.Component<IProps, ILocalState>  
                                 
 
                             
-                            <div className = "d-flex flex-row">
+                            <div className = "d-flex flex-row justify-content-around">
                                 <form onSubmit={(e) => this.emailHandler(e)}>
-                                <div className="col-md-4 bg-info form-group">
-                                        <input className = "form-control" style={{ width: 'auto' }} type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
-                                       <textarea className = "form-control" style={{ width: 'auto' }} name="message" value={this.state.message} onChange={this.changeHandler} />
+                                <div className= "form-group"><label>Title:</label>
+                                <input className = "form-control" type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
+                                </div>
+                                <div className= "form-group"><label>Message:</label>
+                                       <textarea className = "form-control" name="message" value={this.state.message} onChange={this.changeHandler} />
+                                       </div>
                                         <button className="btn btn-primary form-control" type="submit">Send</button>
-                                    </div>
-
+                                        
 
                             </form>
                             {
                                 this.state.id && !this.state.lessonToRender.lesson_peopleRating.includes(this.state.id) &&
                                 (<form onSubmit={(event) => this.giveFeedback(event)}>
-                                   <div className="form-group"> <input width = "40px" id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
+                                   <div className= "form-group"><label>Rating:</label>
+                                   <input className = "form-control" width = "40px" id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
+                                   </div>
                                     <button className="btn btn-primary" id="submitrating">Submit Rating</button>
-                                    </div></form>)
+                                    </form>)
                             }
                             </div>
                             </div>
