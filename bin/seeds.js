@@ -9,6 +9,7 @@ const User = require("../models/User");
 const Lesson = require('../models/Lesson');
 const bcryptSalt = 10;
 
+/*
 mongoose
   .connect('mongodb://heroku_d7xld3w3:dnlgr8q8v8uk6al59ulmoqr3ee@ds237588.mlab.com:37588/heroku_d7xld3w3', {useNewUrlParser: true})
   .then(x => {
@@ -16,7 +17,8 @@ mongoose
   })
   .catch(err => {
     console.error('Error connecting to mongo', err)
-  });
+  }); 
+  */
 
 
 
@@ -234,7 +236,7 @@ Lesson.deleteMany().then(() =>{
 Lesson.create(lessons)})
 .then(() => {
   // Close properly the connection to Mongoose
-  mongoose.disconnect()
+  //mongoose.disconnect()
 })
 .catch(err => {
   mongoose.disconnect()
