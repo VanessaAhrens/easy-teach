@@ -6,7 +6,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-const Lesson = require('.../models/Lesson');
+const Lesson = require('../models/Lesson');
 const bcryptSalt = 10;
 
 mongoose
@@ -230,8 +230,8 @@ User.deleteMany()
   console.log(`${usersCreated.length} users created with the following id:`);
   console.log(usersCreated.map(u => u._id));
 })
-
-Lesson.create(lessons)
+Lesson.deleteMany().then(() =>{
+Lesson.create(lessons)})
 .then(() => {
   // Close properly the connection to Mongoose
   mongoose.disconnect()
