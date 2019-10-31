@@ -82,6 +82,9 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.get('/isloggedin', (req, res) => {
+  res.json(req.session);
+});
 
 router.get("/logout", (req, res, next) => {
   if (!req.session.currentUser) { 

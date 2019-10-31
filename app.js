@@ -74,7 +74,8 @@ app.use(session({
   secret: 'irongenerator',
   resave: true,
   saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
+  store: new MongoStore( { mongooseConnection: mongoose.connection }),
+  maxAge: 365*24*60*60
 }))
 app.use(flash());
 require('./passport')(app);

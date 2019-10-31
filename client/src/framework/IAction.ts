@@ -15,7 +15,8 @@ export enum ActionType {
     add_lessons_from_server = "add_lessons_from_server",
     update_search = "update_search",
     update_search_results = 'update_search_results',
-    user_updated = 'user_updated'
+    user_updated = 'user_updated',
+    lesson_rated = 'lesson_rated'
 }
 export interface IAction {
     type: ActionType;

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { IWindow } from '../framework/IWindow';
-import { ILessonData, IUser } from '../state/appState'
+import { ILessonData, IState } from '../state/appState'
 import { ActionType, IAction } from '../framework/IAction';
 import axios from 'axios';
 import history from '../framework/history';
+import { reducerFunctions } from '../reducer/appReducer';
 
 export interface ISearchResultAction extends IAction {
     data: Object;
 }
 
-interface IUserAction extends IAction {
-    user: IUser
+interface ILessonRated extends IAction {
+    lessons: ILessonData[]
 }
 
 declare let window: IWindow;
@@ -21,7 +22,7 @@ interface IProps {
     match: any
 }
 
-interface IState {
+interface ILocalState {
     lessonToRender: any,
     email: string;
     subject: string;
@@ -30,7 +31,12 @@ interface IState {
     id: string;
 }
 
-export default class LessonDetail extends React.Component<IProps, IState>  {
+reducerFunctions[ActionType.lesson_rated] = function (newState: IState, updateAction: ILessonRated) {
+    newState.BM.lessons = updateAction.lessons;
+    return newState;
+   }
+
+export default class LessonDetail extends React.Component<IProps, ILocalState>  {
     constructor(props: any) {
         super(props)
         let id = window.CS.getBMState().user as any;
@@ -55,12 +61,12 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
     changeHandler = (e: any) => {
         this.setState({
             [e.target.name]: e.target.value
-        } as IState)
+        } as ILocalState)
     }
     changeHandlerInt = (e: any) => {
         this.setState({
             rating: parseInt(e.target.value)
-        } as IState)
+        } as ILocalState)
     }
     render() {
         return (
@@ -118,8 +124,8 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
 
 
             </div>
-            
-            
+
+
         )
     }
 
@@ -128,7 +134,7 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
         const user = window.CS.getBMState().user as any
         if (!this.state.lessonToRender.lesson_peopleRating.includes(user._id)) {
             this.state.lessonToRender.lesson_peopleRating.push(user._id)
-            this.state.lessonToRender.lesson_overallAmountOfRating += this.state.rating;
+            this.state.lessonToRender.lesson_overallAmountOfRating += Number(this.state.rating);
             const aiAction: IAction = {
                 type: ActionType.server_called
             }
@@ -136,10 +142,10 @@ export default class LessonDetail extends React.Component<IProps, IState>  {
             console.log(this.state.lessonToRender)
             axios.put('/lessons/rate/' + this.state.lessonToRender._id, this.state.lessonToRender)
                 .then(res => {
-                    console.log(res.data)
-                    const uiAction: IUserAction = {
-                        type: ActionType.user_updated,
-                        user: res.data
+                    console.log(res.data, window.CS.getBMState().lessons.map((lesson: any, index: any) => lesson._id === res.data._id ? res.data : lesson))
+                    const uiAction: ILessonRated = {
+                        type: ActionType.lesson_rated,
+                        lessons: window.CS.getBMState().lessons.map((lesson: any, index: any) => lesson._id === res.data._id ? res.data : lesson)
                     }
                     window.CS.clientAction(uiAction);
                 });

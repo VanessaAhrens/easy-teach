@@ -24,6 +24,14 @@ interface IUserAction extends IAction {
   user: IUser
 }
 
+reducerFunctions[ActionType.user_updated] = function (newState: IState, updateAction: IUserAction) {
+  newState.BM.user.firstname = updateAction.user.firstname;
+  newState.BM.user.lastname = updateAction.user.lastname;
+  newState.BM.user.username = updateAction.user.username;
+  newState.BM.user.password = updateAction.user.password;
+  return newState;
+ }
+
 export default class EditProfile extends React.PureComponent<IProps, IJSXState> {
 
   constructor(props: IProps) {
