@@ -7,13 +7,22 @@ let Lesson = require('../models/Lesson');
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
 //R: read all lessons
 
+lessonRoutes.put("/rate/:id", (req, res) => {
+    console.log(req.body, req.params.id)
+    Lesson.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(response => res.json(response));
+});
+
+
 lessonRoutes.get('/search', (req, res) => {
     let searchString = new RegExp(req.query.query.toLowerCase(), "i");
-    Lesson.find({lesson_name: searchString }).then(
-        lesson => 
-        res.json(lesson)
-    )
-    .catch(err => res.send(err))
+    Lesson.find({
+            lesson_name: searchString
+        }).then(
+            lesson =>
+            res.json(lesson)
+        )
+        .catch(err => res.send(err))
 });
 
 lessonRoutes.route('/read').get(function (req, res) {
@@ -60,9 +69,9 @@ lessonRoutes.route('/read/:id').get(function (req, res) {
 // post -> put
 lessonRoutes.put('/update/:id', (req, res) => {
     Lesson.findByIdAndUpdate(req.params.id, req.body).then(
-    lesson => {
-        res.json(lesson)
-    });
+        lesson => {
+            res.json(lesson)
+        });
 });
 
 //D: delete the lesson with the given id
@@ -78,22 +87,31 @@ lessonRoutes.route('/delete/:id').post(function (req, res) {
 
 lessonRoutes.post('/email', (req, res) => {
     console.log(req.body)
-    let { email, subject, message } = req.body;
+    let {
+        email,
+        subject,
+        message
+    } = req.body;
     let transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: 'easyteach1234@gmail.com',
-        pass: 'Easyteach1234!'
-      }
+        service: 'Gmail',
+        auth: {
+            user: 'easyteach1234@gmail.com',
+            pass: 'Easyteach1234!'
+        }
     });
     transporter.sendMail({
-      from: '"My Awesome Project :gespenst:" <easyteach1234@gmail.com>',
-      to: email,
-      subject: subject,
-      text: message
-    })
-    .then(info => console.log('message', {email, subject, message, info}))
-    .catch(error => console.log(error));
+            from: '"My Awesome Project :gespenst:" <easyteach1234@gmail.com>',
+            to: email,
+            subject: subject,
+            text: message
+        })
+        .then(info => console.log('message', {
+            email,
+            subject,
+            message,
+            info
+        }))
+        .catch(error => console.log(error));
 })
 
 

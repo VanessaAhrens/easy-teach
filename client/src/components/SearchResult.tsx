@@ -50,8 +50,10 @@ class SearchResult extends Component<{}, IState> {
           <h5 className="d-flex justify-content-center" style={{ marginTop: '2%' }} >We found following results for your search:</h5>
 
           {window.CS.getBMState().searchResult ? window.CS.getBMState().searchResult.map((item: any) =>
+
             <>
               <div className="row" style={{ marginTop: '2%' }} ></div>
+
 
 
 
@@ -66,6 +68,8 @@ class SearchResult extends Component<{}, IState> {
                     <span>{item.lesson_location}</span> </div>
                   <div className=" col-md-2 bg-light  ">
                     <span>{item.lesson_price}€</span> </div>
+                   <div> {item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'No ratings' }</div>
+
                 </div>
 
                 <div className="col-md-2 d-flex justify-content-center" style={{ marginTop: '2%' }}> <button className="btn btn-primary " id={item._id}><Link style={{ textDecoration: 'none', color: 'white' }} to={'/LessonDetail/read/' + item._id}>Show</Link></button></div>
