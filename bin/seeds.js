@@ -239,6 +239,6 @@ Lesson.create(lessons)})
   //mongoose.disconnect()
 })
 .catch(err => {
-  mongoose.disconnect()
+  //mongoose.disconnect()
   throw err
 })
