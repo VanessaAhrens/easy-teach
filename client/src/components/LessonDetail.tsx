@@ -89,28 +89,29 @@ export default class LessonDetail extends React.Component<IProps, ILocalState>  
                                 <p>Send email to: {this.state.lessonToRender.lesson_eMailTeacher}</p> 
                                 
 
+                            
+                            <div className = "d-flex flex-row justify-content-around">
+                                <form onSubmit={(e) => this.emailHandler(e)}>
+                                <div className= "form-group"><label>Title:</label>
+                                <input className = "form-control" type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
+                                </div>
+                                <div className= "form-group"><label>Message:</label>
+                                       <textarea className = "form-control" name="message" value={this.state.message} onChange={this.changeHandler} />
+                                       </div>
+                                        <button className="btn btn-primary form-control" type="submit">Send</button>
+                                        
+
+                            </form>
                             {
                                 this.state.id && !this.state.lessonToRender.lesson_peopleRating.includes(this.state.id) &&
                                 (<form onSubmit={(event) => this.giveFeedback(event)}>
-                                    <input id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
-                                    <button className="btn btn-primary" id="submitrating"></button>
-                                </form>)
+                                   <div className= "form-group"><label>Rating:</label>
+                                   <input className = "form-control" width = "40px" id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
+                                   </div>
+                                    <button className="btn btn-primary" id="submitrating">Submit Rating</button>
+                                    </form>)
                             }
-                            <form onSubmit={(e) => this.emailHandler(e)}>
-                                <div className="col-md-4 bg-info ">
-                                    <div className="form-group col-xs-4">
-                                        <input style={{ width: 'auto' }} type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
-                                    </div>
-                                    <div className="form-group col-xs-4">
-                                        <textarea style={{ width: 'auto' }} name="message" value={this.state.message} onChange={this.changeHandler} />
-                                    </div>
-                                    <div className="d-flex justify-content-around">
-                                        <button className="btn btn-primary" type="submit">Send</button>
-                                    </div>
-                                </div>
-
-                            </form>
-                            
+                            </div>
                             </div>
                             <div className=" col-md-4 col-xs-4" >
                                 <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
