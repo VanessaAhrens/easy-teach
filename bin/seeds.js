@@ -46,7 +46,10 @@ let lessons = [
     lesson_amountPeople: 4,
     lesson_eMailTeacher: "primosch@mediamarktsaturn.com",
     lesson_aboutTeacher: "Hi, I am a professional Tennis teacher. I am looking forward to our future lessons.",
-    lesson_pictureURL: "https://www.radiowroclaw.pl/img/articles/88000/bL2oZ3Q0dX.jpg"
+    lesson_pictureURL: "https://www.radiowroclaw.pl/img/articles/88000/bL2oZ3Q0dX.jpg",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Harfe",
     lesson_duration:120,
@@ -57,7 +60,10 @@ let lessons = [
     lesson_amountPeople: 2,
     lesson_eMailTeacher: "vahrens@mediamarktsaturn.com",
     lesson_aboutTeacher: "I am a musician and i like to play the harp.",
-    lesson_pictureURL: "https://www.musikschule-hochsauerlandkreis.de/wp-content/uploads/2019/01/Dorothea-Bach-300x200.jpeg"
+    lesson_pictureURL: "https://www.musikschule-hochsauerlandkreis.de/wp-content/uploads/2019/01/Dorothea-Bach-300x200.jpeg",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Tennis",
     lesson_duration:80,
@@ -68,7 +74,10 @@ let lessons = [
     lesson_amountPeople: 4,
     lesson_eMailTeacher: "primosch@mediamarktsaturn.com",
     lesson_aboutTeacher: "Hi, I am a professional tennis teacher. I am looking forward to our future lessons.",
-    lesson_pictureURL: "https://www.delraytennis.com/wp-content/uploads/sites/2829/2014/10/Jeff-Bingo-GM-of-Racquet-Sports-in-Delray-Beach-Florida-1024x753.jpg"
+    lesson_pictureURL: "https://www.delraytennis.com/wp-content/uploads/sites/2829/2014/10/Jeff-Bingo-GM-of-Racquet-Sports-in-Delray-Beach-Florida-1024x753.jpg",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Tennis",
     lesson_duration:60,
@@ -79,7 +88,10 @@ let lessons = [
     lesson_amountPeople: 4,
     lesson_eMailTeacher: "primosch@mediamarktsaturn.com",
     lesson_aboutTeacher: "Hi, I am a tennis teacher and I want to find new talents.",
-    lesson_pictureURL: "https://www.narcity.com/u/2019/08/12/c13c40d1834455b69bc45fc3cfa5d9dd.png_1200x630.png"
+    lesson_pictureURL: "https://www.narcity.com/u/2019/08/12/c13c40d1834455b69bc45fc3cfa5d9dd.png_1200x630.png",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Skateboard",
     lesson_duration:60,
@@ -89,7 +101,11 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 2,
     lesson_eMailTeacher: "verdang@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a skateboard teacher, hang loose"
+    lesson_aboutTeacher: "I am a skateboard teacher, hang loose",
+    lesson_pictureURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRVNJjMbPVAzWRfjfhGgJY2vZW7iVvNeMjieSYS36PG91jGs6n9",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Soccer",
     lesson_duration:120,
@@ -99,7 +115,11 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 20,
     lesson_eMailTeacher: "verdang@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a semi-pro soccer trainer and I want to find new talents"
+    lesson_aboutTeacher: "I am a semi-pro soccer trainer and I want to find new talents",
+    lesson_pictureURL:"",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Harfe",
     lesson_duration:240,
@@ -109,7 +129,11 @@ let lessons = [
     lesson_language:"Englisch",
     lesson_amountPeople: 1,
     lesson_eMailTeacher: "vahrens@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a musician and i like to play the harp."
+    lesson_aboutTeacher: "I am a musician and i like to play the harp.",
+    lesson_pictureURL:"https://i.guim.co.uk/img/media/790975d2fc164f75b3ae5b6a0a07c0101288b6fa/1614_340_2692_1615/master/2692.jpg?width=300&quality=85&auto=format&fit=max&s=54063d49b7cf3588d76a0f7d71cbf0af",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Athletics - running",
     lesson_duration:85,
@@ -119,7 +143,11 @@ let lessons = [
     lesson_language:"French",
     lesson_amountPeople: 5,
     lesson_eMailTeacher: "verdang@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a marathoni and i want other people to join"
+    lesson_aboutTeacher: "I am a marathoni and i want other people to join",
+    lesson_pictureURL:"https://ksassets.timeincuk.net/wp/uploads/sites/46/2017/07/rexfeatures_8960473am-920x564.jpg",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Athletics - pentathlon",
     lesson_duration:200,
@@ -129,7 +157,11 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 4,
     lesson_eMailTeacher: "verdang@mediamarktsaturn.com",
-    lesson_aboutTeacher: "1 athletics sport is not enough - join the pentathlon team"
+    lesson_aboutTeacher: "1 athletics sport is not enough - join the pentathlon team",
+    lesson_pictureURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSogwuVcjb26qdCaNJjqZ33t0Pvea5dFLXi8gTOi_FmRumT6B4S",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Excel Basics",
     lesson_duration:120,
@@ -139,7 +171,11 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 18,
     lesson_eMailTeacher: "verdang@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am an excel expert, i will teach you fun with cells and columns "
+    lesson_aboutTeacher: "I am an excel expert, i will teach you fun with cells and columns ",
+    lesson_pictureURL:"https://cdn.pocket-lint.com/r/s/320x/assets/images/142207-phones-feature-what-is-apple-face-id-and-how-does-it-work-image1-5d72kjh6lq.jpg?v1",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Excel Expert",
     lesson_duration:180,
@@ -149,7 +185,11 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 12,
     lesson_eMailTeacher: "verdang@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am an excel expert, and with my expert courses you will be an excel pro"
+    lesson_aboutTeacher: "I am an excel expert, and with my expert courses you will be an excel pro",
+    lesson_pictureURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShpiNjkHI8uB4NOdAHhcqobQZvQ-6Hjk5ocRuUJbh3hgkoC2fy",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Painting",
     lesson_duration:15,
@@ -159,7 +199,11 @@ let lessons = [
     lesson_language:"German",
     lesson_amountPeople: 1,
     lesson_eMailTeacher: "xyz@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a passionate painter and i can teach you how to do lovely paintings"
+    lesson_aboutTeacher: "I am a passionate painter and i can teach you how to do lovely paintings",
+    lesson_pictureURL:"",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   },
   { lesson_name: "Painting",
     lesson_duration:150,
@@ -169,7 +213,11 @@ let lessons = [
     lesson_language:"Englisch",
     lesson_amountPeople: 1,
     lesson_eMailTeacher: "abc@mediamarktsaturn.com",
-    lesson_aboutTeacher: "I am a passionate painter and i can teach you how to do professional paintings"
+    lesson_aboutTeacher: "I am a passionate painter and i can teach you how to do professional paintings",
+    lesson_pictureURL:"",
+    lesson_rating: 0,
+    lesson_peopleRating: [],
+    lesson_overallAmountOfRating: 0
   }
 
 ]
