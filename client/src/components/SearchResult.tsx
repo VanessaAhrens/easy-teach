@@ -27,22 +27,22 @@ class SearchResult extends Component<{}, IState> {
     if (window.CS.getBMState().searchResult.length == 0) {
       return (
         <div>
-        <div className="row d-flex justify-content-start" style={{ marginTop: '50px' }} >
-          <div className="col-md-2"></div>
-          <div className="col-md-6 ">
-            <div className="jumbotron bg-info">
-              <div className="container ">
-                <h1 className="display-4">Sorry!</h1>
-                <p className="lead">We have currently no Teacher for your search...</p>
-              </div></div>
+          <div className="row d-flex justify-content-start" style={{ marginTop: '50px' }} >
+            <div className="col-md-2"></div>
+            <div className="col-md-6 ">
+              <div className="jumbotron bg-info">
+                <div className="container ">
+                  <h1 className="display-4">Sorry!</h1>
+                  <p className="lead">We have currently no Teacher for your search...</p>
+                </div></div>
+            </div>
           </div>
-        </div>
-        <div className="row">
-        <div className=" col-md-4 col-xs-4" > </div>
-        <div className="col-md-4 d-flex justify-content-center" style={{ marginTop: '2%' }}>
-          <button className="btn btn-primary" onClick={this.handleQuery} >Back to Home</button>
-        </div>
-      </div></div>
+          <div className="row">
+            <div className=" col-md-4 col-xs-4" > </div>
+            <div className="col-md-4 d-flex justify-content-center" style={{ marginTop: '2%' }}>
+              <button className="btn btn-primary" onClick={this.handleQuery} >Back to Home</button>
+            </div>
+          </div></div>
       )
     } else {
       return (
@@ -68,8 +68,9 @@ class SearchResult extends Component<{}, IState> {
                     <span>{item.lesson_location}</span> </div>
                   <div className=" col-md-2 bg-light  ">
                     <span>{item.lesson_price}€</span> </div>
-                   <div> {item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'No ratings' }</div>
-
+                  <div className=" col-md-2 bg-light  ">
+                    <div> Rating:{item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'No ratings'}</div>
+                  </div>
                 </div>
 
                 <div className="col-md-2 d-flex justify-content-center" style={{ marginTop: '2%' }}> <button className="btn btn-primary " id={item._id}><Link style={{ textDecoration: 'none', color: 'white' }} to={'/LessonDetail/read/' + item._id}>Show</Link></button></div>
