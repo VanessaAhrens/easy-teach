@@ -34,7 +34,7 @@ interface ILocalState {
 reducerFunctions[ActionType.lesson_rated] = function (newState: IState, updateAction: ILessonRated) {
     newState.BM.lessons = updateAction.lessons;
     return newState;
-   }
+}
 
 export default class LessonDetail extends React.Component<IProps, ILocalState>  {
     constructor(props: any) {
@@ -71,40 +71,52 @@ export default class LessonDetail extends React.Component<IProps, ILocalState>  
     render() {
         return (
             <div>
-                {this.state.lessonToRender ? <><h1>{this.state.lessonToRender.lesson_name}</h1>
-                    <p>Location: {this.state.lessonToRender.lesson_location}</p>
-                    <p>Price per Session: {this.state.lessonToRender.lesson_price} EUR</p>
-                    <p>Duration: {this.state.lessonToRender.lesson_duration} min</p>
-                    <p>Needed Equipment: {this.state.lessonToRender.lesson_equip}</p>
-                    <p>Teaching Language: {this.state.lessonToRender.lesson_language}</p>
-                    <p>Number of participants: {this.state.lessonToRender.lesson_amountPeople}</p>
-                    <p>About me: {this.state.lessonToRender.lesson_abaoutTeacher}</p>
-                    <p>Send email to: {this.state.lessonToRender.lesson_eMailTeacher}</p>
 
-                    {
-                        this.state.id && !this.state.lessonToRender.lesson_peopleRating.includes(this.state.id) &&
-                        (<form onSubmit={(event) => this.giveFeedback(event)}>
-                            <input id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
-                            <button className="btn btn-primary" id="submitrating"></button>
-                        </form>)
-                    }
-                    <form onSubmit={(e) => this.emailHandler(e)}>
-                        <div className="col-md-4 bg-info ">
-                            <div className="form-group col-xs-4">
-                                <input style={{ width: 'auto' }} type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
+                {this.state.lessonToRender ?
+
+                    <>
+                        <div className="row " style={{ marginTop: '5%' }}>
+                            <div className="col-md-4"></div>
+                            <div className="col-md-4 bg-info text-center ">
+                                <h1>{this.state.lessonToRender.lesson_name}</h1>
+                                <p>Location: {this.state.lessonToRender.lesson_location}</p>
+                                <p>Price per Session: {this.state.lessonToRender.lesson_price} EUR</p>
+                                <p>Duration: {this.state.lessonToRender.lesson_duration} min</p>
+                                <p>Needed Equipment: {this.state.lessonToRender.lesson_equip}</p>
+                                <p>Teaching Language: {this.state.lessonToRender.lesson_language}</p>
+                                <p>Number of participants: {this.state.lessonToRender.lesson_amountPeople}</p>
+                                <p>About me: {this.state.lessonToRender.lesson_abaoutTeacher}</p>
+                                <p>Send email to: {this.state.lessonToRender.lesson_eMailTeacher}</p> 
+                                
+
+                            {
+                                this.state.id && !this.state.lessonToRender.lesson_peopleRating.includes(this.state.id) &&
+                                (<form onSubmit={(event) => this.giveFeedback(event)}>
+                                    <input id="rating" type="number" min="0" max="10" name="rating" onChange={this.changeHandlerInt} value={this.state.rating} />
+                                    <button className="btn btn-primary" id="submitrating"></button>
+                                </form>)
+                            }
+                            <form onSubmit={(e) => this.emailHandler(e)}>
+                                <div className="col-md-4 bg-info ">
+                                    <div className="form-group col-xs-4">
+                                        <input style={{ width: 'auto' }} type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />
+                                    </div>
+                                    <div className="form-group col-xs-4">
+                                        <textarea style={{ width: 'auto' }} name="message" value={this.state.message} onChange={this.changeHandler} />
+                                    </div>
+                                    <div className="d-flex justify-content-around">
+                                        <button className="btn btn-primary" type="submit">Send</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            
                             </div>
-                            <div className="form-group col-xs-4">
-                                <textarea style={{ width: 'auto' }} name="message" value={this.state.message} onChange={this.changeHandler} />
-                            </div>
-                            <div className="d-flex justify-content-around">
-                                <button className="btn btn-primary" type="submit">Send</button>
+                            <div className=" col-md-4 col-xs-4" >
+                                <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
                             </div>
                         </div>
-                    </form>
-                    <div className=" col-md-4 col-xs-4" >
-                        <button className="btn btn-primary" onClick={this.handleQuery}>Back</button>
-                    </div>
-                </>
+                    </>
                     :
                     <div className="row d-flex justify-content-start" style={{ marginTop: '50px' }} >
                         <div className="col-md-2"></div>
@@ -118,12 +130,9 @@ export default class LessonDetail extends React.Component<IProps, ILocalState>  
                     </div>}
 
 
-                <div className=" col-md-4" >
-                    <button style={{ marginBottom: '5%' }} className="btn btn-primary" onClick={this.handleQuery}>Back</button>
-                </div>
-
 
             </div>
+
 
 
         )

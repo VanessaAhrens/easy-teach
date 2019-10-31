@@ -69,7 +69,7 @@ class SearchResult extends Component<{}, IState> {
                   <div className=" col-md-2 bg-light  ">
                     <span>{item.lesson_price}€</span> </div>
                   <div className=" col-md-2 bg-light  ">
-                    <div> Rating:{item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'No ratings'}</div>
+                    <div> Rating:{item.lesson_peopleRating.length != 0 ? (item.lesson_overallAmountOfRating / item.lesson_peopleRating.length).toFixed(2) : 'none'}</div>
                   </div>
                 </div>
 
